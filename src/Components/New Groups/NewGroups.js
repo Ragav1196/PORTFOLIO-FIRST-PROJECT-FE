@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Field, FieldArray, Form, Formik, useFormik } from "formik";
+import { Field, FieldArray, Form, Formik } from "formik";
 import * as yup from "yup";
 import "./NewGroups.css";
 import { API_URL } from "../Global Constants/GlobalConstants";
 import { useHistory } from "react-router-dom";
-import jsonwebtoken from "jsonwebtoken";
 
 export function NewGroups() {
   const history = useHistory();
@@ -30,11 +29,7 @@ export function NewGroups() {
   const [typed, setTyped] = useState(false);
   const styles = {
     maxHeight: typed ? "100%" : "0px",
-  };
-
-  // DECODING THE TOKEN
-  const token = localStorage.getItem("Token");
-  var decodedObj = jsonwebtoken.decode(token);
+  };  
 
   // TO PUSH THE NEW GROUP TO THE SERVER
   async function AddGroup(GroupInfo) {

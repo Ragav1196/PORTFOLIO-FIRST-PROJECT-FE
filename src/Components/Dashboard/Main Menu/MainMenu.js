@@ -1,11 +1,11 @@
 import { Dashboard } from "./Dashboard/Dashboard";
 import "./MainMenu.css";
 
-export function MainMenu({ SetShowAddExp }) {
+export function MainMenu() {
   return (
     <section className="MM_MainCntr">
       <article>
-        <Dashboard SetShowAddExp={SetShowAddExp} />
+        <Dashboard />
       </article>
     </section>
   );

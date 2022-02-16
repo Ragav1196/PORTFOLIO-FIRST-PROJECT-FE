@@ -1,42 +1,16 @@
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import IconButton from "@mui/material/IconButton";
-import jsonwebtoken from "jsonwebtoken";
-import { useEffect, useState } from "react";
-import { API_URL } from "../../Global Constants/GlobalConstants";
+import { useContext } from "react";
+import { context } from "../../Routes/Links";
 
 export function GroupNames() {
-  const [groups, setGroups] = useState([]);
-
-  // DECODING THE TOKEN
-  const token = localStorage.getItem("Token");
-  var decodedObj = jsonwebtoken.decode(token);
-
-  // GETTING GROUPS FROM BACKEND
-  useEffect(async () => {
-    const response = await fetch(`${API_URL}/get-groups`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        GroupsId: decodedObj.id.groups,
-        // userId: decodedObj.id._id,
-      }),
-    });
-
-    const data = await response.json();
-    if (!data.Access) {
-      return;
-    }
-
-    const GroupsName = data.GroupName.map((data) => data);
-    setGroups(GroupsName);
-  }, []);
+  // GETTING GROUPS NAME FROM DATABASE THROUGH USECONTEXT
+  const { grpsLst } = useContext(context);
 
   return (
     <>
-      {groups[0] ? (
-        groups.map((data, i) => {
+      {grpsLst[0] ? (
+        grpsLst.map((data, i) => {
           return (
             <div key={i} className="LM_LogoEditCntr LM_cursor">
               <IconButton aria-label="delete">

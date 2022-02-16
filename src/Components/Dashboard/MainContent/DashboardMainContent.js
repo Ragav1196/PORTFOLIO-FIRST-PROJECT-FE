@@ -2,11 +2,11 @@ import { LeftMenu } from "../Left Menu/LeftMenu";
 import { MainMenu } from "../Main Menu/MainMenu";
 import "./DashboardMainContent.css";
 
-export function DashboardMainContent({ showAddExp, SetShowAddExp }) {
+export function DashboardMainContent() {
   return (
-    <section className={`MC_MainCntr ${showAddExp ? "MC_MainCntrOpac" : ""}`}>
+    <section className={"MC_MainCntr"}>
       <LeftMenu />
-      <MainMenu SetShowAddExp={SetShowAddExp} />
+      <MainMenu />
     </section>
   );
 }

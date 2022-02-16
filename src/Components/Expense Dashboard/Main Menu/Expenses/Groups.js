@@ -7,11 +7,13 @@ export function Groups() {
   const { id } = useParams();
   const history = useHistory();
 
-  const data = Expenses.find((data) => {
-    if (data.id == id) {
+  Expenses.find((data) => {
+    if (data.id === id) {
       return data;
     }
+    return 0;
   });
+
   return (
     <article
       onClick={() => history.push(`/group/${id}`)}
@@ -38,7 +40,7 @@ export function Groups() {
         </p>
 
         <p
-          /* style={{
+        /* style={{
             color: data.isYouOwe || !data.isYouAreOwed ? "red" : "#5bc5a7",
           }} */
         >

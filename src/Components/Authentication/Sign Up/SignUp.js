@@ -15,7 +15,7 @@ export function SignUp() {
 
   // TO PUSH THE NEW USER TO THE SERVER STORAGE:
   async function RegisterUser(userInfo) {
-    const response = await fetch(`${API_URL}/sign-up`, {
+    await fetch(`${API_URL}/sign-up`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

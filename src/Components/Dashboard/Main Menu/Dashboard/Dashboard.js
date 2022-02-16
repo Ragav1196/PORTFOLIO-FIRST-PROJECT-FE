@@ -5,7 +5,7 @@ import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { Balances, Expenses } from "./Data";
 import { useHistory } from "react-router-dom";
 
-export function Dashboard({ SetShowAddExp }) {
+export function Dashboard() {
   const history = useHistory();
 
   // TO REMOVE RIGHT BORDER WHEN DETAILS IS EMPTY
@@ -21,10 +21,6 @@ export function Dashboard({ SetShowAddExp }) {
     <section className="DB_MainCntr">
       <article className="DB_Header">
         <h1>DASHBOARD</h1>
-        <div>
-          <button onClick={() => SetShowAddExp(true)}>Add Expense</button>
-          <button>Settle Up</button>
-        </div>
       </article>
 
       {Expenses[0] ? (
@@ -67,7 +63,7 @@ export function Dashboard({ SetShowAddExp }) {
                   <div key={i} className="DB_YouOwesCntr">
                     <section onClick={() => history.push(`/friend/${data.id}`)}>
                       <div className="DB_ProfPicCntr">
-                        <img src={data.image} alt="Profile Picture" />
+                        <img src={data.image} alt="Profile" />
                       </div>
                       <div>
                         <h3>{data.name}</h3>
@@ -114,7 +110,7 @@ export function Dashboard({ SetShowAddExp }) {
                 <div key={i} className="DB_YouAreOwedCntr">
                   <section onClick={() => history.push(`/friend/${data.id}`)}>
                     <div className="DB_ProfPicCntr">
-                      <img src={data.image} alt="Profile Picture" />
+                      <img src={data.image} alt="Profile" />
                     </div>
                     <div>
                       <h3>{data.name}</h3>

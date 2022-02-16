@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Login } from "../Authentication/Login/Login";
 import { SignUp } from "../Authentication/Sign Up/SignUp";
@@ -9,57 +9,86 @@ import { NewGroups } from "../New Groups/NewGroups";
 import { Home } from "../Home Page/Home";
 import { TopBar } from "../Top Bar/Top Bar";
 import { NewFriends } from "../New Friends/NewFriends";
+import { FriendsList } from "../GetDataFrmDatabase";
+import { GroupsList } from "../GetDataFrmDatabase";
+
+// USING USE CONTEXT TO SAVE DATA FROM DB
+export const context = createContext({});
 
 export function Links() {
+  // TO SAVE FRIENDS LIST FROM DATABASE
+  const [frndsLst, setFrndsLst] = useState(null);
+
+  // TO SAVE GROUPS LIST FROM DATABASE
+  const [grpsLst, setGrpsLst] = useState([]);
+
+  // CREATING OBJECT WITH THE DATA FROM THE DB
+  const obj = { frndsLst, setFrndsLst, grpsLst, setGrpsLst };
+
+  // GETTING FRIENDS FROM BACKEND
+  useEffect(() => {
+    FriendsList.then((data) => {
+      if (!data.Access) {
+        return;
+      }
+      // const friendsNames = data.friends.map((data) => data.name);
+      setFrndsLst(data);
+    });
+  }, []);
+
+  // GETTING GROUPS FROM BACKEND
+  useEffect(() => {
+    GroupsList.then((data) => {
+      if (!data.Access) {
+        return;
+      }
+
+      const GroupsName = data.GroupName.map((data) => data);
+      setGrpsLst(GroupsName);
+    });
+  }, []);
+
   //   TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
   const [showAddExp, SetShowAddExp] = useState(false);
 
   return (
-    <Switch>
-      {/* HOME PAGE */}
-      <Route exact path="/">
-        <Home />
-      </Route>
-
-      {/* LOGIN */}
-      <Route exact path="/login">
-        <Login />
-      </Route>
-
-      {/* SIGN UP */}
-      <Route exact path="/sign-up">
-        <SignUp />
-      </Route>
-
-      {/* DASHBOARD */}
-      <Route path="/dashboard">
-        <TopBar showAddExp={showAddExp} />
-        <DashboardMainContent
-          showAddExp={showAddExp}
-          SetShowAddExp={SetShowAddExp}
-        />
-        <AddExpense showAddExp={showAddExp} SetShowAddExp={SetShowAddExp} />
-      </Route>
-
-      {/* FRIENDS */}
-      <Route path="/friends/:id">
-        <TopBar />
-        <FriendsMainContent />
-      </Route>
-
-      <Route path="/friend/new">
-        <NewFriends />
-      </Route>
-
-      {/* GROUPS */}
-      <Route path="/groups/:id">
-        <TopBar />
-        <FriendsMainContent />
-      </Route>
-
-      <Route path="/group/new">
-        <NewGroups />
-      </Route>
-    </Switch>
+    <context.Provider value={obj}>
+      <Switch>
+        {/* HOME PAGE */}
+        <Route exact path="/">
+          <Home />
+        </Route>
+        {/* LOGIN */}
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        {/* SIGN UP */}
+        <Route exact path="/sign-up">
+          <SignUp />
+        </Route>
+        {/* DASHBOARD */}
+        <Route path="/dashboard">
+          <TopBar />
+          <DashboardMainContent />
+        </Route>
+        {/* FRIENDS */}
+        <Route path="/friends/:id">
+          <TopBar showAddExp={showAddExp} />
+          <FriendsMainContent SetShowAddExp={SetShowAddExp} />
+          <AddExpense showAddExp={showAddExp} SetShowAddExp={SetShowAddExp} />
+        </Route>
+        <Route path="/friend/new">
+          <NewFriends />
+        </Route>
+        {/* GROUPS */}
+        <Route path="/groups/:id">
+          <TopBar />
+          <FriendsMainContent />
+        </Route>
+        <Route path="/group/new">
+          <NewGroups />
+        </Route>
+      </Switch>
+    </context.Provider>
   );
 }
