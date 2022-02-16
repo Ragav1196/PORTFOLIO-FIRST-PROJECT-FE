@@ -1,0 +1,155 @@
+/* MAIN CONTAINER */
+.L_MainCntr {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* HEADER */
+.L_HeaderCntr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 150px;
+}
+
+.L_HeaderCntr > div > button {
+  height: 45px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.L_HeaderCntr > div > button:nth-of-type(1) {
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: #1cc29f;
+  border: 1px solid #1cc29f;
+  color: white;
+  font-weight: 600px;
+  font-size: 16px;
+}
+
+/* LOGIN DETAIILS */
+.L_LoginDtlCntr {
+  height: 70%;
+  /* background-color: #1cc29f; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.L_LoginDtlCntr > div {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 20px;
+  /* background-color: aqua; */
+  width: 40%;
+  height: 100%;
+  align-items: center;
+}
+
+.L_LoginDtlCntr > div > form {
+  display: flex;
+  /* border-radius: 10px; */
+  flex-direction: column;
+  gap: 20px;
+  /* background-color: aqua; */
+  width: 100%;
+  /* height: 100%; */
+  align-items: center;
+}
+
+.L_LoginDtlCntr > div > form > label {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  color: #979797;
+}
+
+.L_LoginDtlCntr > div > form > label > input {
+  height: 40px;
+  margin-top: 5px;
+  border: 3px solid #dddddd;
+}
+
+.L_LoginDtlCntr > div > form > label > input:focus {
+  outline: none;
+  border: 3px solid #1cc29f;
+}
+
+.L_LoginDtlCntr > div > form > button {
+  width: 80%;
+  height: 30px;
+  cursor: pointer;
+}
+
+.L_LoginDtlCntr > div > form > button:nth-of-type(1) {
+  background-color: #1cc29f;
+  color: white;
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #1cc29f;
+  border-radius: 18px;
+}
+
+.L_LoginDtlCntr > div > form > button:nth-of-type(2) {
+  background-color: white;
+  font-size: 18px;
+  height: 40px;
+  border: 1px solid white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 18px;
+}
+
+.L_LoginError {
+  color: red;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.L_FrgtPwd  {
+  color: #1cc29f;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* .L_LoginDtlCntr > div > form > p:nth-of-type(2) {
+  color: #979797;
+} */
+
+.L_LoginDtlCntr > div > form > div > hr {
+  display: inline-block;
+  width: 30px;
+  vertical-align: middle;
+  background-color: #dddddd;
+  height: 1px;
+  border: none;
+}
+
+.L_LoginDtlCntr > div > form > div > span {
+  margin: 0px 5px;
+}
+
+/* FOOTER */
+.L_Footer > svg {
+  position: absolute;
+  bottom: 0px;
+}
+
+/* INPUT FIELD ERRORS */
+.L_Error {
+  color: red;
+  font-weight: bold;
+}
+
+.L_Error::after {
+  content: "*";
+}

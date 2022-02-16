@@ -1,0 +1,156 @@
+/* HEADER */
+.F_Header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  background-color: #d9d9d9;
+}
+
+.F_Header > h1 {
+  font-size: 23px;
+  padding: 10px 0px;
+}
+
+.F_Header > div {
+  padding: 10px 0px;
+}
+
+.F_Header > div > button:nth-of-type(1) {
+  background-color: #ff5216;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+}
+
+.F_Header > div > button:nth-of-type(2) {
+  background-color: #5bc5a7;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 20px;
+}
+
+/* DETAILS */
+.F_DetailsCntr {
+  display: flex;
+  /* justify-content: space-between; */
+  padding: 5px 30px;
+  border-bottom: 1px solid #999;
+}
+
+.F_DetailsCntr:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}
+
+.F_DetailsCntr:hover .F_GroupName > p {
+  text-decoration: underline;
+}
+
+/* DATE */
+.F_Date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+}
+
+.F_Date > p:nth-of-type(1) {
+  font-size: 12px;
+}
+
+.F_Date > p:nth-of-type(2) {
+  font-size: 20px;
+}
+
+/* GROUP NAME */
+.F_GroupName {
+  display: flex;
+  margin-right: auto;
+  margin-left: 20px;
+  align-items: center;
+  gap: 10px;
+}
+
+.F_GroupName > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.F_GroupName > p {
+  font-size: 18px;
+}
+
+/* INDIVIDUAL EXPENSES */
+
+.F_IndExpType {
+  display: flex;
+  margin-right: auto;
+  margin-left: 20px;
+  align-items: center;
+  gap: 10px;
+}
+
+.F_IndExpType > img {
+  width: 30px;
+  height: 30px;
+}
+
+.F_IndExpType > p {
+  font-size: 18px;
+}
+
+/* AMOUNT -> GROUPS */
+.G_Amount > p:nth-of-type(1) {
+  color: #999;
+}
+
+.G_Amount > p:nth-of-type(2) {
+  color: red;
+  font-weight: bold;
+}
+
+/* AMOUNT -> INDIVIDUAL EXPENSE -> PAID */
+.IE_Amount_Paid {
+  margin-right: 100px;
+}
+
+.IE_Amount_Paid > p:nth-of-type(1) {
+  color: #999;
+}
+
+.IE_Amount_Paid > p:nth-of-type(2) {
+  color: red;
+  font-weight: bold;
+}
+
+/* AMOUNT -> INDIVIDUAL EXPENSE -> LENT */
+.IE_Amount_Lent {
+  display: flex;
+  gap: 12px;
+}
+
+.IE_Amount_Lent > div > p:nth-of-type(1) {
+  color: #999;
+}
+
+.IE_Amount_Lent > div > p:nth-of-type(2) {
+  color: red;
+  font-weight: bold;
+}
+
+.IE_Amount_Lent > div:nth-of-type(2) > button > svg {
+  width: 16px;
+  opacity: 0;
+  color: red;
+}
+
+.F_DetailsCntr:hover .IE_Amount_Lent > div:nth-of-type(2) > button > svg {
+  opacity: unset;
+}

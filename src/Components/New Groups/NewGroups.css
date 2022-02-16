@@ -1,0 +1,185 @@
+/* MAIN CONTAINER */
+.NG_MainCntr {
+  /* width: 100vw; */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ARTICLE */
+.NG_MainCntr > article {
+  width: 50%;
+  display: flex;
+  gap: 20px;
+  height: 65%;
+  padding-top: 100px;
+  /* margin-right: 100px; */
+}
+
+.NG_MainCntr > article > img {
+  width: 200px;
+  height: 200px;
+}
+
+/* ARTICLE - > div */
+.NG_MainCntr > article > div {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.NG_MainCntr > article > div > form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.NG_MainCntr > article > div > form > p,
+.NG_HiddenInput > h1 {
+  font-size: 16px;
+  color: #999;
+}
+
+.NG_MainCntr > article > div > form > label > input {
+  height: 42px;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.NG_MainCntr > article > div > form > label > input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+
+/* BUTTONS */
+.NG_submit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.NG_MainCntr > article > div > form > div > p {
+  color: #999;
+}
+
+.NG_submit > button {
+  cursor: pointer;
+  width: 165px;
+  height: 40px;
+  background-color: #ff5216;
+  border: 1px solid #ff5216;
+  color: white;
+  border-radius: 10px;
+}
+
+.NG_submit > button:nth-of-type(2) {
+  cursor: pointer;
+  width: 165px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid white;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 10px;
+}
+
+/* HIDDEN INPUT */
+.NG_HiddenInput {
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+  flex-direction: column;
+  transition: all 2s;
+  width: 70%;
+  height: min-content;
+  /* transform: translateY(10px); */
+  overflow: hidden;
+  /* border-bottom: 1px solid rgb(177, 177, 177); */
+}
+
+.NG_HiddenInput > div > label > input {
+  height: 30px;
+  flex: 1;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.NG_HiddenInput > label > input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+
+.NG_AddPersons {
+  color: blue !important;
+  cursor: pointer;
+}
+
+.NG_AddPersons:hover {
+  text-decoration: underline;
+}
+
+/* INPUT FIELS LABELS -> MAIN FIELD */
+.NG_InputLabelMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.NG_InputLabelMain > div:nth-of-type(1) {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* INPUT FIELS LABELS -> HIDDEN FIELD */
+
+.NG_InputLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.NG_InputLabel > img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.NG_InputLabel > div:nth-of-type(1) {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.NG_InputLabel > p {
+  color: #c00;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+  padding: 0px 5px;
+}
+
+.NG_InputLabel > p:hover {
+  transform: scale(1.4);
+  text-decoration: 3px underline;
+  cursor: pointer;
+}
+
+/* ERROR MESSAGE */
+.NG_Error,
+.NG_GroupNameError {
+  color: red;
+  font-weight: bold;
+  margin-left: 36px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.NG_Error::after,
+.NG_GroupNameError::after {
+  content: "*";
+}
+
+.NG_GroupNameError {
+  margin-left: unset;
+}

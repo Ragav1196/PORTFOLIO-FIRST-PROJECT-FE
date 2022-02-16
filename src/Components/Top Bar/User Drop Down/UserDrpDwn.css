@@ -1,0 +1,20 @@
+.UDD_MainCntr {
+  position: absolute;
+  top: 28px;
+  left: 80px;
+  white-space: nowrap;
+  /* width: 200px;
+  height: 200px; */
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.UDD_MainCntr > p {
+  padding: 5px 10px;
+  padding-right: 25px;
+}
+
+.UDD_MainCntr > p:hover {
+  background-color: #5bc5a7;
+}

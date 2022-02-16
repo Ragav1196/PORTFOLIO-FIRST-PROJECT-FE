@@ -1,0 +1,137 @@
+/* MAIN CONTAINER */
+.AE_MainCntr {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.AE_MainCntrDisp {
+  display: none;
+}
+
+/* ADD EXPENSE CONTAINER */
+.AE_AddExpCntr {
+  width: 390px;
+  max-height: 550px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* HEADING */
+.AE_Heading {
+  background-color: #5bc5a7;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px 5px 0px 0px;
+  padding: 0px 10px;
+}
+
+.AE_Heading > button > svg {
+  color: white;
+  width: 22px;
+}
+
+.AE_Heading > button > svg:hover {
+  color: red;
+}
+
+/* SEARCH FRIENDS */
+.AE_SearchFriends {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid;
+  position: relative;
+}
+
+.AE_SearchFriends > p {
+  display: flex;
+  flex: 1;
+}
+
+.AE_SearchFriends > div {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 3;
+  margin-left: 10px;
+}
+
+/* .AE_SearchFriends > p > span:nth-of-type(1) {
+  flex: 1;
+} */
+
+/* .AE_SearchFriends > p > span:nth-of-type(2) {
+  margin-left: 10px;
+  flex: 4;
+} */
+
+.AE_SearchFriends > div > input {
+  /* margin-left: 10px; */
+  border: none;
+  width: 145px;
+}
+
+.AE_SearchFriends > div > input:focus {
+  outline: none;
+}
+
+/* .AE_SearchFriends > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+} */
+
+#AE_Chip > div {
+  width: 100px;
+}
+
+/* FRIENDS FIND RESULT LIST */
+.AE_FriendsNamesCntr {
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px 10px; */
+}
+
+.AE_FriendsNamesCntr > div {
+  position: absolute;
+  background-color: #e8e8e8;
+  border-bottom: 1px solid #a5a5a5;
+  width: 390px;
+}
+
+.AE_FriendsNamesCntr > div > div > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.AE_FriendsNames {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  /* margin-bottom: 10px; */
+  padding: 5px 10px;
+}
+
+.AE_FriendsNames:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}

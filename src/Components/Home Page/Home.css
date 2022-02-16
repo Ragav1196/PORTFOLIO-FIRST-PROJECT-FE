@@ -1,0 +1,127 @@
+/* HEADER */
+.H_HeaderCntr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 150px;
+}
+
+.H_HeaderCntr > div > button {
+  height: 45px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.H_HeaderCntr > div > button:nth-of-type(1) {
+  background-color: white;
+  border: none;
+  color: #1cc29f;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.H_HeaderCntr > div > button:nth-of-type(2) {
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: #1cc29f;
+  border: 1px solid #1cc29f;
+  color: white;
+  font-weight: 600px;
+  font-size: 16px;
+}
+
+/* BACKGROUND */
+.H_BgCntr {
+  background-image: url("https://e7.pngegg.com/pngimages/758/386/png-clipart-simple-white-honeycomb-pattern-background-white-polygon.png");
+  height: 89vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  position: fixed;
+}
+
+/* DETAILS */
+.H_DetailsCntr {
+  position: fixed;
+  height: 89vh;
+  width: 100vw;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+}
+
+.H_DetailsCntr > div {
+  width: 350px;
+}
+
+.H_DetailsCntr > div > h1 {
+  font-size: 2.5rem;
+}
+
+.H_DetailsCntr > div > h1 > span {
+  color: #1cc29f;
+}
+
+.H_DetailsCntr > div > h3 {
+  font-size: 1.125rem;
+  margin-top: 20px;
+  width: 345px;
+  font-weight: 500;
+}
+
+.H_DetailsCntr > div > button {
+  margin-top: 20px;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #1cc29f;
+  border: 1px solid #1cc29f;
+  color: white;
+  font-weight: 600px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.H_DetailsCntr > div > div {
+  width: 230px;
+  gap: 10px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.H_DetailsCntr > svg {
+  width: 500px;
+  height: 500px;
+}
+
+.H_DetailsCntr > svg * {
+  fill: currentColor;
+  color: #1cc29f;
+}
+
+.fill-current {
+  fill: currentColor;
+}
+
+.H_DetailsCntr > div > div > svg:nth-of-type(1) > path {
+  color: #1cc29f;
+}
+
+.H_DetailsCntr > div > div > svg:nth-of-type(2) > path {
+  color: #8656cd;
+}
+
+.H_DetailsCntr > div > div > svg:nth-of-type(3) > path {
+  color: #a6002f;
+}
+
+.H_DetailsCntr > div > div > svg:nth-of-type(4) > path {
+  color: #383b3f;
+}
+
+.H_DetailsCntr > div > div > svg {
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,219 @@
+/* HEADER */
+.DB_Header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  background-color: #eee;
+}
+
+.DB_Header > h1 {
+  font-size: 23px;
+  padding: 10px 0px;
+}
+
+.DB_Header > div {
+  padding: 10px 0px;
+}
+
+.DB_Header > div > button:nth-of-type(1) {
+  background-color: #ff5216;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+}
+
+.DB_Header > div > button:nth-of-type(2) {
+  background-color: #5bc5a7;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 20px;
+}
+
+/* BALANCES */
+.DB_balances {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #cac3c3;
+  border-top: 1px solid #cac3c3;
+  background-color: #eee;
+}
+
+.DB_balances > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #cac3c3;
+  margin: 15px 0px;
+}
+
+.DB_balances > div:nth-of-type(1),
+.DB_balances > div:nth-of-type(2) {
+  flex: 1;
+}
+
+.DB_balances > div:nth-of-type(3) {
+  border-right: none;
+  flex: 1;
+}
+
+.DB_balances > div > p:nth-of-type(1) {
+  color: rgb(151 146 145);
+}
+
+.DB_balances > div:nth-child(odd) > p:nth-of-type(2) {
+  color: #5bc5a7;
+}
+
+.DB_balances > div:nth-child(even) > p:nth-of-type(2) {
+  color: red;
+}
+
+/* DETAILS HEADING */
+.DB_DetailsHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 20px;
+}
+
+.DB_DetailsHeading > h1 {
+  color: rgb(151 146 145);
+  font-size: 18px;
+}
+
+.DB_DetailsHeading > div > button {
+  border-color: rgb(151 146 145);
+  color: black;
+  font-size: 12px;
+  background-color: rgb(225 225 225);
+}
+
+/* DETAILS */
+.DB_Details {
+  margin: 40px;
+  display: flex;
+}
+
+.DB_Details ul li {
+  list-style: circle;
+  margin-left: 100px;
+}
+
+.DB_Details ul li:hover {
+  text-decoration: underline;
+}
+
+.DB_Details h3 {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.DB_Details span {
+  font-weight: bold;
+}
+
+.DB_Details ul > li > span {
+  font-weight: unset;
+}
+
+.DB_Details > div:nth-of-type(1) ul > li > span {
+  color: red;
+}
+
+.DB_Details > div:nth-of-type(2) ul > li > span {
+  color: #5bc5a7;
+}
+
+.DB_Details > div:nth-of-type(1),
+.DB_Details > div:nth-of-type(2) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* YOU OWES */
+.DB_YouOwesCntr {
+  display: flex;
+  flex-direction: column;
+}
+
+.DB_YouOwesCntr:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}
+
+.DB_YouOwesCntr > section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.DB_YouOwesCntr > section > div:nth-of-type(2) > p {
+  color: red;
+}
+
+.DB_YouOwesCntr > section:nth-of-type(2) > ul > li {
+  color: #777;
+}
+
+.DB_ProfPicCntr {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.DB_ProfPicCntr > img {
+  width: 100%;
+  height: 100%;
+}
+
+/* YOU ARE OWNED */
+
+.DB_YouAreOwedCntr > section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.DB_YouAreOwedCntr:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}
+
+.DB_YouAreOwedCntr > section > div:nth-of-type(2) > p {
+  color: #5bc5a7;
+}
+
+.DB_YouAreOwedCntr > section:nth-of-type(2) > ul > li {
+  color: #777;
+}
+
+/* EMPTY DETAILS CONTAINER */
+.DB_EmptyDetailsCntr {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.DB_EmptyDetailsCntr > img {
+  width: 120px;
+}
+
+.DB_EmptyDetailsCntr > div > h1 {
+  font-size: 28px;
+}
+
+.DB_EmptyDetailsCntr > div > p {
+  font-size: 18px;
+}

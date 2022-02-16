@@ -1,0 +1,110 @@
+/* MAIN CONTAINER */
+.EB_MainCntr {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* DESCRIPTION */
+.EB_Description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.EB_Description > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.EB_Description > div > input {
+  border: none;
+  border-bottom: 1px dashed black;
+  font-size: 20px;
+  width: 200px;
+}
+
+.EB_Description > div > label > input {
+  border: none;
+  font-size: 25px;
+  width: 192px;
+}
+
+.EB_Description > div > label {
+  border-bottom: 1px dashed black;
+}
+
+.EB_Description > div input:focus {
+  outline: none;
+}
+
+/* SHARE */
+.EB_Share {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.EB_Share > p > span {
+  background-color: #ededed;
+  border-radius: 20px;
+  padding: 0px 10px;
+  padding-bottom: 5px;
+  color: #5cc5a7;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.EB_Share > p > span:hover {
+  background-color: #d5d5d5;
+}
+
+/* OTHER BUTTONS */
+.EB_OtherBtns {
+  margin-top: 20px;
+}
+
+.EB_OtherBtns > button {
+  width: 120px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #a5a5a5;
+  cursor: pointer;
+}
+
+.EB_OtherBtns > button:nth-of-type(2) {
+  margin-left: 20px;
+}
+
+/* SAVE AND CANCEL BUTTON */
+.EB_SaveBtn {
+  display: flex;
+  margin-top: 20px;
+  width: 92%;
+  padding: 10px 20px;
+  border-top: 1px solid #a5a5a5;
+  justify-content: flex-end;
+}
+
+.EB_SaveBtn > button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid #a5a5a5;
+  cursor: pointer;
+}
+
+.EB_SaveBtn > button:nth-of-type(2) {
+  margin-left: 10px;
+  background-color: #41b795;
+  border-color: #41b795;
+}

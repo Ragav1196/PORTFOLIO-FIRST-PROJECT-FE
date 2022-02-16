@@ -1,0 +1,168 @@
+/* MAIN CONTAINER */
+.NF_MainCntr {
+  /* width: 100vw; */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ARTICLE */
+.NF_MainCntr > article {
+  width: 50%;
+  display: flex;
+  gap: 20px;
+  height: 65%;
+  padding-top: 100px;
+  /* margin-right: 100px; */
+}
+
+.NF_MainCntr > article > img {
+  width: 200px;
+  height: 200px;
+}
+
+/* ARTICLE - > div */
+.NF_MainCntr > article > div {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.NF_MainCntr > article > div > form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.NF_MainCntr > article > div > form > p,
+.NF_HiddenInput > h1 {
+  font-size: 16px;
+  color: #999;
+}
+
+.NF_MainCntr > article > div > form > label > input {
+  height: 42px;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.NF_MainCntr > article > div > form > label > input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+
+/* BUTTONS */
+.NF_MainCntr > article > div > form > div:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.NF_MainCntr > article > div > form > div > p {
+  color: #999;
+}
+
+.NF_MainCntr > article > div > form > div > button {
+  cursor: pointer;
+  width: 165px;
+  height: 40px;
+  border: 1px solid #ff5216;
+  color: white;
+  border-radius: 10px;
+}
+
+.NF_MainCntr > article > div > form > div > button:nth-of-type(2) {
+  cursor: pointer;
+  width: 165px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid white;
+  color: black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 10px;
+}
+
+/* HIDDEN INPUT */
+.NF_HiddenInput {
+  display: flex;
+  /* align-items: center; */
+  gap: 10px;
+  flex-direction: column;
+  transition: all 2s;
+  width: 100%;
+  height: min-content;
+  /* transform: translateY(10px); */
+  overflow: hidden;
+  /* border-bottom: 1px solid rgb(177, 177, 177); */
+}
+
+.NF_HiddenInput > label > input {
+  height: 25px;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.NF_HiddenInput > label > input:focus {
+  outline: none;
+  border: 1px solid blue;
+}
+
+.NF_AddPersons {
+  color: blue !important;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.NF_AddPersons:hover {
+  text-decoration: underline;
+}
+
+/* INPUT FIELS LABELS -> MAIN FIELD */
+.NF_InputLabelMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.NF_InputLabelMain > div:nth-of-type(1) {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* INPUT FIELS LABELS -> HIDDEN FIELD */
+
+.NF_InputLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.NF_InputLabel > img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.NF_InputLabel > div:nth-of-type(1) {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* ERROR MESSAGE */
+.NF_Error {
+  color: red;
+  font-weight: bold;
+}
+
+.NF_Error::after {
+  content: "*";
+}
+
+/* ERROR MESSAGE */
+.NF_ErrorMsg {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,169 @@
+/* MAIN CONTAINER */
+.LM_MainCntr {
+  /* display: flex; */
+  overflow-y: scroll;
+  flex: 1;
+  /* margin: 20px 50px; */
+  padding: 20px 50px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+/* DASHBOARD CONTAINER */
+.LM_dashBoardIconCntr {
+  display: flex;
+  align-items: center;
+  border-left: 6px solid #5bc5a7;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.LM_dashBoardIconCntr > p {
+  font-size: 16px;
+  color: #5bc5a7;
+  font-weight: bold;
+  margin-left: 13px;
+}
+
+/* SEARCH CONTAINER */
+.LM_searchCntr {
+  border: 1px solid grey;
+  width: 75%;
+  height: 30px;
+  background-color: #eeeeee;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.LM_searchCntr > input {
+  border: none;
+  background-color: #eeeeee;
+  padding: 0px;
+  height: 96%;
+  width: 100%;
+  font-size: 14px;
+}
+
+.LM_searchCntr > input:focus {
+  outline: none;
+}
+
+/* HEADER CONTAINER */
+.LM_headerCntr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eee;
+  color: #999;
+  padding: 0px 10px;
+  /* width: 70%; */
+  border-radius: 5px;
+}
+
+.LM_headerCntr > div {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.LM_headerCntr > div:hover,
+.LM_headerCntr > div:hover > button > svg {
+  color: #5bc5a7;
+}
+
+.LM_headerCntr > div > button {
+  padding: 0px;
+}
+
+.LM_headerCntr > div > button > svg {
+  width: 16px;
+}
+
+.LM_headerCntr > div > p {
+  cursor: pointer;
+}
+
+/* INVITE CONTAINER */
+.LM_inviteCntr > div:nth-child(1) {
+  border: 1px solid #39a385;
+  background-color: #5bc5a7;
+  width: 70%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.LM_inviteCntr > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  border: 1px solid #ccc;
+}
+
+.LM_inviteCntr > div:nth-child(2) > input {
+  width: 80%;
+  margin: 10px 0px;
+}
+
+.LM_inviteCntr > div:nth-child(2) > button {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+/* COMMON */
+
+/* FOR THE DASHBOARD LOGO */
+.LM_logo {
+  background-image: url("https://assets.splitwise.com/assets/fat_rabbit/dashboard2.png");
+  width: 16px;
+  height: 16px;
+}
+
+/* FOR OTHER LOGO */
+.LM_LogoEditCntr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* FOR THE CURSOR` */
+.LM_cursor {
+  cursor: pointer;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.LM_cursor > button {
+  padding: 0px;
+}
+
+.LM_cursor > button > svg {
+  width: 16px;
+}
+
+.LM_cursor:hover {
+  background-color: #eee;
+  color: #666;
+}
+
+/* FOR UNORDERED LIST */
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+/* TO SHOW A MESSAGE FOR EMPTY CONTAINER */
+.FN_Empty,
+.GN_Empty {
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.LM_GroupsCntr,
+.LM_FriendsCntr {
+  width: 70%;
+}
