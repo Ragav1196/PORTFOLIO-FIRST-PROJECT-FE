@@ -43,7 +43,7 @@ export function Links() {
       }
       setFrndsLst(data);
     });
-  }, [decodedObj]);
+  }, []);
 
   // GETTING GROUPS FROM BACKEND
   useEffect(() => {
@@ -56,7 +56,7 @@ export function Links() {
       const GroupsName = data.GroupName.map((data) => data);
       setGrpsLst(GroupsName);
     });
-  }, [decodedObj]);
+  }, []);
 
   // TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
   const [showAddExp, SetShowAddExp] = useState(false);
