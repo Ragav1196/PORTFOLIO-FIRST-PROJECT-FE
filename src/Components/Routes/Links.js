@@ -21,7 +21,7 @@ export function Links() {
   const decodedObj = decodeToken(Token);
 
   // TO SAVE FRIENDS LIST FROM DATABASE
-  const [frndsLst, setFrndsLst] = useState(null);
+  const [frndsLst, setFrndsLst] = useState([]);
 
   // TO SAVE GROUPS LIST FROM DATABASE
   const [grpsLst, setGrpsLst] = useState([]);

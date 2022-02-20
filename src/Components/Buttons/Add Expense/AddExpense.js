@@ -22,7 +22,7 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
 
   // TO FILTER THE FRIENDS NAME ALONE FROM THE "frndsLst" BASED ON ID
   let friendFrmFrndsLst;
-  if (frndsLst) {
+  if (frndsLst.friends) {
     const frndDetailObj = frndsLst.friends.filter(({ _id }) => _id === id);
     friendFrmFrndsLst = frndDetailObj[0].name;
   }
@@ -75,7 +75,7 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
       ) : (
         ""
       )}
-      
+
       {/* CONTAIINER WHERE TO SELECT WHO IS PAYING */}
       <ChoosePayer
         moveCntrs={moveCntrs}

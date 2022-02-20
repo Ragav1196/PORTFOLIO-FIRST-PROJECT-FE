@@ -11,7 +11,7 @@ export function FriendsNames() {
 
   return (
     <>
-      {frndsLst ? (
+      {frndsLst.friends ? (
         frndsLst.friends.map(({ name, _id }, i) => {
           return (
             <div
