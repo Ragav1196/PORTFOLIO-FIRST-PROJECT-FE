@@ -9,35 +9,45 @@ import { NewGroups } from "../New Groups/NewGroups";
 import { Home } from "../Home Page/Home";
 import { TopBar } from "../Top Bar/Top Bar";
 import { NewFriends } from "../New Friends/NewFriends";
-import { FriendsList } from "../GetDataFrmDatabase";
-import { GroupsList } from "../GetDataFrmDatabase";
+import { FriendsListFn, GroupsListFn } from "../GetDataFrmDatabase";
+import { decodeToken } from "react-jwt";
 
 // USING USE CONTEXT TO SAVE DATA FROM DB
 export const context = createContext({});
 
 export function Links() {
+  // DECODING THE TOKEN
+  const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
+
   // TO SAVE FRIENDS LIST FROM DATABASE
   const [frndsLst, setFrndsLst] = useState(null);
 
   // TO SAVE GROUPS LIST FROM DATABASE
   const [grpsLst, setGrpsLst] = useState([]);
 
-  // CREATING OBJECT WITH THE DATA FROM THE DB
-  const obj = { frndsLst, setFrndsLst, grpsLst, setGrpsLst };
+  // CREATING OBJECT WITH THE DATA FROM THE DB TO USE IN USECONTEXT
+  const obj = {
+    frndsLst,
+    setFrndsLst,
+    grpsLst,
+    setGrpsLst,
+  };
 
   // GETTING FRIENDS FROM BACKEND
   useEffect(() => {
+    const FriendsList = FriendsListFn(decodedObj);
     FriendsList.then((data) => {
       if (!data.Access) {
         return;
       }
-      // const friendsNames = data.friends.map((data) => data.name);
       setFrndsLst(data);
     });
-  }, []);
+  }, [decodedObj]);
 
   // GETTING GROUPS FROM BACKEND
   useEffect(() => {
+    const GroupsList = GroupsListFn(decodedObj);
     GroupsList.then((data) => {
       if (!data.Access) {
         return;
@@ -46,9 +56,9 @@ export function Links() {
       const GroupsName = data.GroupName.map((data) => data);
       setGrpsLst(GroupsName);
     });
-  }, []);
+  }, [decodedObj]);
 
-  //   TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
+  // TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
   const [showAddExp, SetShowAddExp] = useState(false);
 
   return (
@@ -78,7 +88,7 @@ export function Links() {
           <AddExpense showAddExp={showAddExp} SetShowAddExp={SetShowAddExp} />
         </Route>
         <Route path="/friend/new">
-          <NewFriends />
+          <NewFriends setFrndsLst={setFrndsLst} />
         </Route>
         {/* GROUPS */}
         <Route path="/groups/:id">
@@ -86,7 +96,7 @@ export function Links() {
           <FriendsMainContent />
         </Route>
         <Route path="/group/new">
-          <NewGroups />
+          <NewGroups setGrpsLst={setGrpsLst} />
         </Route>
       </Switch>
     </context.Provider>

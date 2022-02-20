@@ -2,18 +2,23 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "./NewFriends.css";
-import jsonwebtoken from "jsonwebtoken";
 import { API_URL } from "../Global Constants/GlobalConstants";
 import { useHistory } from "react-router-dom";
+import { decodeToken } from "react-jwt";
+import { useJwt } from "react-jwt";
+import { FriendsListFn } from "../GetDataFrmDatabase";
 
-export function NewFriends() {
+export function NewFriends({ setFrndsLst }) {
   const history = useHistory();
 
   // DECODING THE TOKEN
-  const token = localStorage.getItem("Token");
-  var decodedObj = jsonwebtoken.decode(token);
+  const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
 
-  // TO CHANGE THE BUTTON CONTENT TO SHOW ADDING PORGRESS
+  // TO REASSIGN A NEW TOKEN
+  const { reEvaluateToken } = useJwt(Token);
+
+  // TO CHANGE THE BUTTON CONTENT TO SHOW ADDING PROGRESS
   const [isFrndAdded, setIsFrndAdded] = useState(false);
   const btnStyles = {
     backgroundColor: isFrndAdded ? "rgb(235 116 75)" : "#ff5216",
@@ -35,6 +40,20 @@ export function NewFriends() {
     const data = await response.json();
     if (data.Access) {
       localStorage.setItem("Token", data.Token);
+
+      // REASSIGNING NEW TOKEN TO THE JWT STATE
+      const newToken = localStorage.getItem("Token");
+      reEvaluateToken(newToken);
+      const decodedObj = decodeToken(newToken);
+
+      // TO ADD THE NEWLY ADDED FRIEND TO THE MAIN LIST
+      FriendsListFn(decodedObj).then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        setFrndsLst(data);
+      });
+
       return history.push("/dashboard");
     }
 
@@ -42,10 +61,12 @@ export function NewFriends() {
     setErrorMsg(data.message);
   }
 
+  // FORM VALIDATION
   const formValidationSchema = yup.object({
     friendName: yup.string().required("Please Provide a friend name"),
   });
 
+  // FORMIK
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {

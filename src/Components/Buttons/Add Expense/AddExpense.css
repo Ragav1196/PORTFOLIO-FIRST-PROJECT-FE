@@ -6,10 +6,10 @@
   left: 0px;
   right: 0px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  align-items: flex-start;
   gap: 20px;
+  margin-top: 25vh;
 }
 
 .AE_MainCntrDisp {
@@ -26,6 +26,8 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  z-index: 1;
+  transition: all 0.4s;
 }
 
 /* HEADING */

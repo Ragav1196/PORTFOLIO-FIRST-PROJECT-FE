@@ -7,9 +7,7 @@ export const FormikData = () => {
         <h1>Friend List</h1>
         <Formik
           initialValues={{ friends: ["jared", "ian", "brent"] }}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
+          onSubmit={() => {}}
           render={({ values }) => (
             <Form>
               <FieldArray

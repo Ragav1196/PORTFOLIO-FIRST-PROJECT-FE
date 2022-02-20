@@ -8,12 +8,12 @@ import { useHistory } from "react-router-dom";
 export function Dashboard() {
   const history = useHistory();
 
-  // TO REMOVE RIGHT BORDER WHEN DETAILS IS EMPTY
+  // TO REMOVE RIGHT BORDER WHEN EXPENSE DETAILS IS EMPTY
   const BorderRightStyles = {
     borderRight: Expenses[0] ? "1px solid rgb(151 146 145)" : "0px",
   };
 
-  // TO CHANGE THE DETAILS CONTAINER FROM FLEX TO BLOCK WHEN DETAILS IS EMPTY
+  // TO CHANGE THE DETAILS CONTAINER FROM FLEX TO BLOCK WHEN EXPENSE DETAILS IS EMPTY
   const FlexToInitialStyles = {
     display: Expenses[0] ? "flex" : "block",
   };

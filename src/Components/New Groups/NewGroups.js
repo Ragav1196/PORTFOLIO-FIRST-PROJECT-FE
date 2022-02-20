@@ -4,9 +4,18 @@ import * as yup from "yup";
 import "./NewGroups.css";
 import { API_URL } from "../Global Constants/GlobalConstants";
 import { useHistory } from "react-router-dom";
+import { decodeToken } from "react-jwt";
+import { useJwt } from "react-jwt";
+import { GroupsListFn } from "../GetDataFrmDatabase";
 
-export function NewGroups() {
+export function NewGroups({ setGrpsLst }) {
   const history = useHistory();
+
+  // DECODING THE TOKEN
+  const Token = localStorage.getItem("Token");
+
+  // TO REASSIGN A NEW TOKEN
+  const { reEvaluateToken } = useJwt(Token);
 
   // VALIDATION SCHEMA
   const Schema = yup.object().shape({
@@ -29,7 +38,7 @@ export function NewGroups() {
   const [typed, setTyped] = useState(false);
   const styles = {
     maxHeight: typed ? "100%" : "0px",
-  };  
+  };
 
   // TO PUSH THE NEW GROUP TO THE SERVER
   async function AddGroup(GroupInfo) {
@@ -44,6 +53,20 @@ export function NewGroups() {
 
     if (data.Access) {
       localStorage.setItem("Token", data.Token);
+
+      // REASSIGNING NEW TOKEN
+      const newToken = localStorage.getItem("Token");
+      reEvaluateToken(newToken);
+      const decodedObj = decodeToken(newToken);
+
+      // ADDING THE NEWLY ADDED GROUPS TO THE GROUP LIST
+      GroupsListFn(decodedObj).then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        const GroupsName = data.GroupName.map((data) => data);
+        setGrpsLst(GroupsName);
+      });
       return history.push("/dashboard");
     }
 
@@ -60,6 +83,7 @@ export function NewGroups() {
         />
 
         <div>
+          {/* TO ADD FORM DYNAMICALLY */}
           <Formik
             initialValues={{
               groupName: "",
@@ -67,7 +91,6 @@ export function NewGroups() {
             }}
             validationSchema={Schema}
             onSubmit={(GroupInfo) => {
-              // GroupInfo.friendsList.splice(0, 0, decodedObj.id.name);
               setIsGroupAdded(true);
               AddGroup(GroupInfo);
             }}

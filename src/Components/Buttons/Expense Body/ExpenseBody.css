@@ -1,3 +1,4 @@
+/* FORM CONTAINER */
 /* MAIN CONTAINER */
 .EB_MainCntr {
   padding-top: 20px;
@@ -107,4 +108,97 @@
   margin-left: 10px;
   background-color: #41b795;
   border-color: #41b795;
+}
+
+/* CHOOSE PAYER CONTAINER */
+.CP_MainCntr {
+  height: min-content;
+  width: 300px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
+    rgb(0 0 0 / 9%) 0px -3px 5px;
+  background-color: #fff;
+  transition: all 0.4s;
+}
+
+/* HEADING */
+.CP_Heading {
+  background-color: #5bc5a7;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px 5px 0px 0px;
+  padding: 0px 10px;
+}
+
+.CP_UsersCntr > div {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.247);
+}
+
+/* USER CONTAINER */
+.CP_UsersCntr > div > img {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+}
+
+.CP_UsersCntr > div:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}
+
+/* MULTIPLE PAYER CONTAINER */
+.CP_PaidByMultPpl > p {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.247);
+  padding: 5px 0px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.CP_PaidByMultPpl:hover {
+  background-color: #eee;
+  color: #666;
+  cursor: pointer;
+}
+
+.CP_PaidByMultPpl > p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* FORM */
+.CP_PaidByMultPpl > form > div > div {
+  padding: 0px 15px;
+  padding-bottom: 10px;
+}
+
+.CP_PaidByMultPpl > form > div > div > p {
+  margin-bottom: 5px;
+}
+
+.CP_PaidByMultPpl > form > div > div > input {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  height: 25px;
+  width: 97%;
+}
+
+.CP_PaidByMultPpl > form > div > div > input:focus {
+  outline: none;
+  border: 1px solid #1cc29f;
+}
+
+.CP_PaidByMultPpl > form > button {
+  margin: 10px 0px;
+  margin-left: 15px;
 }
