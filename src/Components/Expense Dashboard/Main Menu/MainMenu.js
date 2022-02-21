@@ -1,11 +1,11 @@
 import { Friend } from "./Expenses/Friend";
 import "./MainMenu.css";
 
-export function MainMenu({ SetShowAddExp }) {
+export function MainMenu() {
   return (
     <section className="MM_MainCntr">
       <article>
-        <Friend SetShowAddExp={SetShowAddExp} />
+        <Friend />
       </article>
     </section>
   );

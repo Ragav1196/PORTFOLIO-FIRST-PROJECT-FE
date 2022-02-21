@@ -51,19 +51,25 @@
   gap: 10px;
 }
 
-.EB_Share > p > span {
+.EB_Share > div {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.EB_Share > div > p:nth-of-type(2) {
   background-color: #ededed;
   border-radius: 20px;
-  padding: 0px 10px;
-  padding-bottom: 5px;
+  padding: 3px 10px;
   color: #5cc5a7;
+  padding-bottom: 5px;
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 2px;
   cursor: pointer;
 }
 
-.EB_Share > p > span:hover {
+.EB_Share > div > p:nth-of-type(2):hover {
   background-color: #d5d5d5;
 }
 
@@ -95,19 +101,16 @@
   justify-content: flex-end;
 }
 
-.EB_SaveBtn > button {
-  width: 100px;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  border: 1px solid #a5a5a5;
-  cursor: pointer;
+.EB_SaveBtn > button:nth-of-type(1) {
+  background-color: red;
+  color: white;
 }
 
 .EB_SaveBtn > button:nth-of-type(2) {
   margin-left: 10px;
   background-color: #41b795;
   border-color: #41b795;
+  color: white;
 }
 
 /* CHOOSE PAYER CONTAINER */

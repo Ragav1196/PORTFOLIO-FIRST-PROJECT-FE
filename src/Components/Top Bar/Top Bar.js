@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { context } from "../Routes/Links";
 import "./Top Bar.css";
 import { UserDrpDwn } from "./User Drop Down/UserDrpDwn";
 
-export function TopBar({ showAddExp }) {
+export function TopBar() {
   const history = useHistory();
+
+  const { showAddExp } = useContext(context);
 
   // TO HIDE USER DROP DOWN MENU
   const [hideUDD, setHideUDD] = useState(false);

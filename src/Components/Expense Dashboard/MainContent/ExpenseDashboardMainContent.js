@@ -4,11 +4,11 @@ import { MainMenu } from "../Main Menu/MainMenu";
 // import { MainMenu } from "../Main Menu/MainMenu";
 import "./ExpenseDashboardMainContent.css";
 
-export function FriendsMainContent({ SetShowAddExp }) {
+export function FriendsMainContent() {
   return (
     <section className="MC_MainCntr">
       <LeftMenu />
-      <MainMenu SetShowAddExp={SetShowAddExp} />
+      <MainMenu />
     </section>
   );
 }

@@ -7,9 +7,11 @@ import { ExpenseBody } from "../Expense Body/ExpenseBody";
 import { useParams } from "react-router-dom";
 import { ChoosePayer } from "../Expense Body/ChoosePayer";
 
-export function AddExpense({ showAddExp, SetShowAddExp }) {
+export function AddExpense() {
   // GETTING FRIEND ID fROM THE URL
   const { id } = useParams();
+
+  const { showAddExp, SetShowAddExp } = useContext(context);
 
   // TO SHOW/HIDE THE "ChoosePayer" COMPONENT
   const [moveCntrs, setMoveCntrs] = useState(false);
@@ -20,24 +22,24 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
   // GETTING FRND NAME FROM DATABASE THROUGH USECONTEXT
   const { frndsLst } = useContext(context);
 
-  // TO FILTER THE FRIENDS NAME ALONE FROM THE "frndsLst" BASED ON ID
-  let friendFrmFrndsLst;
-  if (frndsLst.friends) {
-    const frndDetailObj = frndsLst.friends.filter(({ _id }) => _id === id);
-    friendFrmFrndsLst = frndDetailObj[0].name;
-  }
-
   // TO SET WHO IS PAYING THE CURRENT EXPENSE
   const [paidPersn, setPaidPersn] = useState("You");
 
   // TO SET PAYMENT DETAILS WHERE MULTIPLE USERS SHARE THE AMOUNT
   const [multiplePayment, setMultiplePayment] = useState({});
 
-  // TO DIVIDE THE TOTAL AMOUNT BETWEEN THE USERS
-  const [amtPerPerson, setAmtPerPerson] = useState();
-
   // TO SET THE TOTAL AMOUNT SPENT FOR THE CURRENT EXPENSE
-  const [totalAmt, setTotalAmt] = useState();
+  const [totalAmt, setTotalAmt] = useState(0);
+
+  // TO SHOW OR HIDE THE MULTIPLE PLAYER FORM WHERE USERS CAN SPLIT AND RECORD THE TOTAL AMOUNT BETWEEN THEM
+  const [multPayer, setMultPayer] = useState(false);
+
+  // TO FILTER THE FRIENDS NAME ALONE FROM THE "frndsLst" BASED ON ID
+  let friendFrmFrndsLst;
+  if (frndsLst.friends) {
+    const frndDetailObj = frndsLst.friends.filter(({ _id }) => _id === id);
+    friendFrmFrndsLst = frndDetailObj[0].name;
+  }
 
   return (
     <section className={`AE_MainCntr ${showAddExp ? "" : "AE_MainCntrDisp"}`}>
@@ -59,16 +61,16 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
             </div>
 
             <ExpenseBody
-              moveCntrs={moveCntrs}
-              setMoveCntrs={setMoveCntrs}
-              friendFrmFrndsLst={friendFrmFrndsLst}
               paidPersn={paidPersn}
               setPaidPersn={setPaidPersn}
               multiplePayment={multiplePayment}
-              amtPerPerson={amtPerPerson}
-              setAmtPerPerson={setAmtPerPerson}
+              setMultiplePayment={setMultiplePayment}
               totalAmt={totalAmt}
               setTotalAmt={setTotalAmt}
+              setMultPayer={setMultPayer}
+              moveCntrs={moveCntrs}
+              setMoveCntrs={setMoveCntrs}
+              friendFrmFrndsLst={friendFrmFrndsLst}
             />
           </div>
         </article>
@@ -78,16 +80,14 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
 
       {/* CONTAIINER WHERE TO SELECT WHO IS PAYING */}
       <ChoosePayer
+        setPaidPersn={setPaidPersn}
+        setMultiplePayment={setMultiplePayment}
+        setTotalAmt={setTotalAmt}
+        multPayer={multPayer}
+        setMultPayer={setMultPayer}
         moveCntrs={moveCntrs}
         setMoveCntrs={setMoveCntrs}
         friendFrmFrndsLst={friendFrmFrndsLst}
-        setPaidPersn={setPaidPersn}
-        setAmtPerPerson={setAmtPerPerson}
-        multiplePayment={multiplePayment}
-        setMultiplePayment={setMultiplePayment}
-        amtPerPerson={amtPerPerson}
-        setTotalAmt={setTotalAmt}
-        totalAmt={totalAmt}
       />
     </section>
   );

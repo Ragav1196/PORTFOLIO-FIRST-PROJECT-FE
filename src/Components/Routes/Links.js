@@ -26,12 +26,17 @@ export function Links() {
   // TO SAVE GROUPS LIST FROM DATABASE
   const [grpsLst, setGrpsLst] = useState([]);
 
+  // TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
+  const [showAddExp, SetShowAddExp] = useState(false);
+
   // CREATING OBJECT WITH THE DATA FROM THE DB TO USE IN USECONTEXT
   const obj = {
     frndsLst,
     setFrndsLst,
     grpsLst,
     setGrpsLst,
+    showAddExp,
+    SetShowAddExp,
   };
 
   // GETTING FRIENDS FROM BACKEND
@@ -58,9 +63,6 @@ export function Links() {
     });
   }, []);
 
-  // TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
-  const [showAddExp, SetShowAddExp] = useState(false);
-
   return (
     <context.Provider value={obj}>
       <Switch>
@@ -83,9 +85,9 @@ export function Links() {
         </Route>
         {/* FRIENDS */}
         <Route path="/friends/:id">
-          <TopBar showAddExp={showAddExp} />
-          <FriendsMainContent SetShowAddExp={SetShowAddExp} />
-          <AddExpense showAddExp={showAddExp} SetShowAddExp={SetShowAddExp} />
+          <TopBar />
+          <FriendsMainContent />
+          <AddExpense />
         </Route>
         <Route path="/friend/new">
           <NewFriends setFrndsLst={setFrndsLst} />

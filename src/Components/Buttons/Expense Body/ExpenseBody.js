@@ -2,6 +2,10 @@ import "./ExpenseBody.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { decodeToken } from "react-jwt";
+import { useContext, useEffect } from "react";
+import { context } from "../../Routes/Links";
+import { API_URL } from "../../Global Constants/GlobalConstants";
+import { AddExpenseToDb } from "../../AddDataToDatabase";
 
 export function ExpenseBody({
   paidPersn,
@@ -9,51 +13,94 @@ export function ExpenseBody({
   moveCntrs,
   friendFrmFrndsLst,
   multiplePayment,
-  amtPerPerson,
-  setAmtPerPerson,
+  totalAmt,
+  setTotalAmt,
+  setMultPayer,
+  setPaidPersn,
+  setMultiplePayment,
 }) {
+  const { SetShowAddExp } = useContext(context);
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
   const decodedObj = decodeToken(Token);
 
+  // CALLING FUNCTION FROM "AddDataToDatabase" COMPONENT TO ADD THE EXPENSES TO THE DATABASE
+  const link = "add-friends-expenses";
+  function callingAddToDbFn(expenseDetails) {
+    const response = AddExpenseToDb(expenseDetails, link);
+    response.then((data) => console.log(data));
+  }
+
   // FORM VALIDATION
   const formValidationSchema = yup.object({
     description: yup.string().required("Please provide a description"),
-    amount: yup.number().required("Please provide a amount"),
+    amount: yup
+      .number()
+      .required("Please provide a amount")
+      .positive("Please provide amount greater than 0")
+      .min(1, "Please provide amount greater than 0"),
   });
 
   // FORMIK
-  const { handleChange, values, handleSubmit, handleBlur } = useFormik({
+  const {
+    handleChange,
+    values,
+    handleSubmit,
+    handleBlur,
+    errors,
+    setFieldValue,
+    resetForm,
+  } = useFormik({
     initialValues: {
       description: "",
       amount: "",
     },
     validationSchema: formValidationSchema,
-    onSubmit: (details) => {
-      const expenses = {
-        description: details.description,
-        totalAmount: details.amount,
-      };
-
-      const persnToRtnAmt = multiplePayment.persnToRtnAmt || {
-        name: paidPersn === "You" ? friendFrmFrndsLst : decodedObj.id.name,
-        amount: paidPersn !== "Multiple People" ? amtPerPerson / 2 : "",
-      };
+    onSubmit: (expenseDetails, { resetForm }) => {
       let result = {};
-
-      result.username = multiplePayment.username || {
-        name: decodedObj.id.name,
-        paid: paidPersn === "You" ? details.amount : 0,
-      };
-      result.friendName = multiplePayment.friendName || {
-        name: friendFrmFrndsLst,
-        paid: paidPersn === friendFrmFrndsLst ? details.amount : 0,
+      result.expenses = {
+        description: expenseDetails.description,
+        totalAmount: expenseDetails.amount,
       };
 
-      result.expenses = expenses;
-      result.persnToRtnAmt = persnToRtnAmt;
+      // SETTING WHO NEED TO GIVE BACK THE MONEY
+      result.persnToRtnAmt = multiplePayment.persnToRtnAmt
+        ? multiplePayment.persnToRtnAmt
+        : {
+            name: paidPersn === "You" ? friendFrmFrndsLst : decodedObj.id.name,
+            amount: totalAmt / 2,
+          };
+
+      result.username = multiplePayment.username
+        ? multiplePayment.username
+        : {
+            name: decodedObj.id.name,
+            paid: paidPersn === "You" ? expenseDetails.amount : 0,
+          };
+
+      result.friendName = multiplePayment.friendName
+        ? multiplePayment.friendName
+        : {
+            name: friendFrmFrndsLst,
+            paid: paidPersn === friendFrmFrndsLst ? expenseDetails.amount : 0,
+          };
+      setPaidPersn("You");
+      setTotalAmt(0);
+      setMultiplePayment({});
+      resetForm();
+      callingAddToDbFn(result);
     },
   });
+
+  // TO ADD THE AMOUNT PAID BY BOTH THE USERS DYNAMICALLY IN THE FORM "AMOUNT" SECTION
+  useEffect(() => {
+    if (multiplePayment.isMultipleUsersPaid) {
+      return setFieldValue("amount", totalAmt);
+    }
+  }, [totalAmt]);
+
+  // TO RESET THE FORM WHENEVER THE PAID PERSON IS CHANGED
+  useEffect(() => resetForm(), [paidPersn]);
 
   return (
     <form onSubmit={handleSubmit} className="EB_FormCntr" action="">
@@ -80,8 +127,11 @@ export function ExpenseBody({
                 id="amount"
                 placeholder="0.00"
                 onChange={(e) => {
+                  if (multiplePayment.isMultipleUsersPaid) {
+                    return;
+                  }
                   handleChange(e);
-                  setAmtPerPerson(e.target.value);
+                  setTotalAmt(e.target.value);
                 }}
                 onBlur={handleBlur}
                 name="amount"
@@ -92,16 +142,35 @@ export function ExpenseBody({
         </article>
 
         <article className="EB_Share">
-          <p>
-            Paid by
-            <span onClick={() => setMoveCntrs(!moveCntrs)}>{paidPersn}</span>
-          </p>
-          <p>(₹{amtPerPerson / 2}/person)</p>
+          <div>
+            <p>Paid by</p>
+            <p
+              onClick={() => {
+                setMoveCntrs(!moveCntrs);
+                setMultPayer(false);
+              }}
+            >
+              {paidPersn}
+            </p>
+          </div>
+          <p>(₹{totalAmt / 2}/person)</p>
         </article>
 
         <article className="EB_SaveBtn">
-          <button type="button">Cancel</button>
-          <button type="submit">Save</button>
+          <button
+            onClick={() => {
+              SetShowAddExp(false);
+              setTotalAmt(0);
+              setPaidPersn("You");
+            }}
+            id="btnDfltStyle"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button id="btnDfltStyle" type="submit">
+            Save
+          </button>
         </article>
       </section>
     </form>
