@@ -29,6 +29,9 @@ export function Links() {
   // TO SHOW OR HIDE THE ADD EXPENSE CONTAINER
   const [showAddExp, SetShowAddExp] = useState(false);
 
+  // STORING THE EXPENSE DATA FROM THE DATABASE TO THIS STATE
+  const [expensesFrmDb, setExpensesFrmDb] = useState({});
+
   // CREATING OBJECT WITH THE DATA FROM THE DB TO USE IN USECONTEXT
   const obj = {
     frndsLst,
@@ -37,6 +40,8 @@ export function Links() {
     setGrpsLst,
     showAddExp,
     SetShowAddExp,
+    expensesFrmDb,
+    setExpensesFrmDb,
   };
 
   // GETTING FRIENDS FROM BACKEND
@@ -84,7 +89,7 @@ export function Links() {
           <DashboardMainContent />
         </Route>
         {/* FRIENDS */}
-        <Route path="/friends/:id">
+        <Route path="/friends/:user_id/:friend_id">
           <TopBar />
           <FriendsMainContent />
           <AddExpense />

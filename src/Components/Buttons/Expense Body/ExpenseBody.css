@@ -7,6 +7,37 @@
   align-items: center;
 }
 
+/* WHO IS PAYING */
+.EB_PaidBY {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.EB_PaidBY > div {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.EB_PaidBY > div > p:nth-of-type(2) {
+  background-color: #ededed;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: #5cc5a7;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.EB_PaidBY > div > p:nth-of-type(2):hover {
+  background-color: #d5d5d5;
+}
+
 /* DESCRIPTION */
 .EB_Description {
   display: flex;
@@ -42,35 +73,9 @@
   outline: none;
 }
 
-/* SHARE */
-.EB_Share {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.EB_Share > div {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-
-.EB_Share > div > p:nth-of-type(2) {
-  background-color: #ededed;
-  border-radius: 20px;
-  padding: 3px 10px;
-  color: #5cc5a7;
-  padding-bottom: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  cursor: pointer;
-}
-
-.EB_Share > div > p:nth-of-type(2):hover {
-  background-color: #d5d5d5;
+/* SPLITTED AMOUNT */
+.EB_splitedAmt {
+  margin-top: 10px;
 }
 
 /* OTHER BUTTONS */

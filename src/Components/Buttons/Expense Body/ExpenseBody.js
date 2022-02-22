@@ -28,7 +28,7 @@ export function ExpenseBody({
   const link = "add-friends-expenses";
   function callingAddToDbFn(expenseDetails) {
     const response = AddExpenseToDb(expenseDetails, link);
-    response.then((data) => console.log(data));
+    response.then((data) => console.log(data)).then(() => SetShowAddExp(false));
   }
 
   // FORM VALIDATION
@@ -105,6 +105,20 @@ export function ExpenseBody({
   return (
     <form onSubmit={handleSubmit} className="EB_FormCntr" action="">
       <section className="EB_MainCntr">
+        <article className="EB_PaidBY">
+          <div>
+            <p>Who is paying ?</p>
+            <p
+              onClick={() => {
+                setMoveCntrs(!moveCntrs);
+                setMultPayer(false);
+              }}
+            >
+              {paidPersn}
+            </p>
+          </div>
+        </article>
+
         <article className="EB_Description">
           <img
             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
@@ -141,18 +155,7 @@ export function ExpenseBody({
           </div>
         </article>
 
-        <article className="EB_Share">
-          <div>
-            <p>Paid by</p>
-            <p
-              onClick={() => {
-                setMoveCntrs(!moveCntrs);
-                setMultPayer(false);
-              }}
-            >
-              {paidPersn}
-            </p>
-          </div>
+        <article className="EB_splitedAmt">
           <p>(₹{totalAmt / 2}/person)</p>
         </article>
 

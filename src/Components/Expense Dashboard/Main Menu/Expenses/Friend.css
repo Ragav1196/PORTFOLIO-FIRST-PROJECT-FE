@@ -37,9 +37,14 @@
 /* DETAILS */
 .F_DetailsCntr {
   display: flex;
-  /* justify-content: space-between; */
-  padding: 5px 30px;
+  /* padding: 5px 30px; */
   border-bottom: 1px solid #999;
+  flex-direction: column;
+}
+
+.F_DetailsCntr > article {
+  display: flex;
+  padding: 5px 30px;
 }
 
 .F_DetailsCntr:hover {
@@ -116,6 +121,20 @@
   font-weight: bold;
 }
 
+/* AMOUNT -> INDIVIDUAL EXPENSE -> TOTAL AMOUNT */
+.IE_TotalAmount {
+  margin-right: 100px;
+}
+
+.IE_TotalAmount > p:nth-of-type(1) {
+  color: #999;
+}
+
+.IE_TotalAmount > p:nth-of-type(2) {
+  color: black;
+  font-weight: bold;
+}
+
 /* AMOUNT -> INDIVIDUAL EXPENSE -> PAID */
 .IE_Amount_Paid {
   margin-right: 100px;
@@ -126,7 +145,7 @@
 }
 
 .IE_Amount_Paid > p:nth-of-type(2) {
-  color: red;
+  color: black;
   font-weight: bold;
 }
 
@@ -141,7 +160,7 @@
 }
 
 .IE_Amount_Lent > div > p:nth-of-type(2) {
-  color: red;
+  color: black;
   font-weight: bold;
 }
 
@@ -153,4 +172,68 @@
 
 .F_DetailsCntr:hover .IE_Amount_Lent > div:nth-of-type(2) > button > svg {
   opacity: unset;
+}
+
+/* INDIVIDUAL EXPENSES DETAILS */
+
+.IndividualExpensesDetailsCall {
+  overflow: hidden;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.individualExpenseDetailsCntr {
+  width: -webkit-fill-available;
+  padding: 0px 10px;
+  transition: all 0.5s;
+  height: fit-content;
+}
+
+.individualExpenseDetailsCntr > article {
+  display: flex;
+}
+
+.individualExpenseDetailsCntr > article:nth-of-type(1) {
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.individualExpenseDetailsCntr > article:nth-of-type(1) > img {
+  width: 84px;
+  height: 84px;
+}
+
+.individualExpenseDetailsCntr
+  > article:nth-of-type(1)
+  > div
+  > p:nth-of-type(2) {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.individualExpenseDetailsCntr
+  > article:nth-of-type(1)
+  > div
+  > p:nth-of-type(3) {
+  font-size: 13px;
+  color: #999;
+}
+
+.individualExpenseDetailsCntr > article:nth-of-type(2) {
+  flex-direction: column;
+}
+
+.individualExpenseDetailsCntr > article:nth-of-type(2) > div {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+}
+
+.individualExpenseDetailsCntr > article:nth-of-type(2) > div > p span {
+  font-weight: 700;
+}
+
+.IED_Lent_or_Owe {
+  color: #5bc5a7;
 }

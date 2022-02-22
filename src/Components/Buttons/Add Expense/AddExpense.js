@@ -9,7 +9,7 @@ import { ChoosePayer } from "../Expense Body/ChoosePayer";
 
 export function AddExpense() {
   // GETTING FRIEND ID fROM THE URL
-  const { id } = useParams();
+  const { friend_id } = useParams();
 
   const { showAddExp, SetShowAddExp } = useContext(context);
 
@@ -37,7 +37,10 @@ export function AddExpense() {
   // TO FILTER THE FRIENDS NAME ALONE FROM THE "frndsLst" BASED ON ID
   let friendFrmFrndsLst;
   if (frndsLst.friends) {
-    const frndDetailObj = frndsLst.friends.filter(({ _id }) => _id === id);
+    const frndDetailObj = frndsLst.friends.filter(
+      ({ _id }) => _id === friend_id
+    );
+    console.log(friend_id);
     friendFrmFrndsLst = frndDetailObj[0].name;
   }
 

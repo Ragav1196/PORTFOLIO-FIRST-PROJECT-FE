@@ -135,6 +135,7 @@ export function NewGroups({ setGrpsLst }) {
                             <img
                               src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-blue8-50px.png"
                               alt="Profile"
+                              className="userImg"
                             />
                             {index === 0 ? (
                               <Field
