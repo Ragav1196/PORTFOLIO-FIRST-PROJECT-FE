@@ -1,23 +1,36 @@
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import IconButton from "@mui/material/IconButton";
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { context } from "../../Routes/Links";
 
 export function GroupNames() {
-  // GETTING GROUPS NAME FROM DATABASE THROUGH USECONTEXT
+  const history = useHistory();
+
+  // GETTING GROUPS DETAILS FROM DATABASE THROUGH USECONTEXT
   const { grpsLst } = useContext(context);
+
+  // SEPERATING ONLY THE GROUP NAME AND ID FORM THE "grpLst" OBJECT
+  let groupsDetails = [];
+  if (grpsLst) {
+    groupsDetails = grpsLst.groupsDetails;
+  }
 
   return (
     <>
-      {grpsLst[0] ? (
-        grpsLst.map((data, i) => {
+      {groupsDetails[0] ? (
+        groupsDetails.map((data, i) => {
           return (
-            <div key={i} className="LM_LogoEditCntr LM_cursor">
+            <div
+              onClick={() => history.push(`/groups/${data._id}`)}
+              key={i}
+              className="LM_LogoEditCntr LM_cursor"
+            >
               <IconButton aria-label="delete">
                 <LocalOfferIcon />
               </IconButton>
 
-              <li>{data}</li>
+              <li>{data.name}</li>
             </div>
           );
         })

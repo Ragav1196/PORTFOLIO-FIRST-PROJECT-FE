@@ -1,8 +1,8 @@
 // import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../../../Global Constants/GlobalConstants";
-import { context } from "../../../Routes/Links";
+import { API_URL } from "../../../../../Global Constants/GlobalConstants";
+import { context } from "../../../../../Routes/Links";
 import "./Friend.css";
 import { IndividualExpenses } from "./IndividualExpenses";
 

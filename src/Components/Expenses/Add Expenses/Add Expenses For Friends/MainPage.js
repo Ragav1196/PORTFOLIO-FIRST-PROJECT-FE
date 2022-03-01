@@ -1,13 +1,13 @@
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useContext, useState } from "react";
-import "./AddExpense.css";
-import { context } from "../../Routes/Links";
-import { ExpenseBody } from "../Expense Body/ExpenseBody";
+import "./MainPage.css";
+import { ExpenseBody } from "./ExpenseBody";
 import { useParams } from "react-router-dom";
-import { ChoosePayer } from "../Expense Body/ChoosePayer";
+import { ChoosePayer } from "./ChoosePayer";
+import { context } from "../../../Routes/Links";
 
-export function AddExpense() {
+export function MainPage() {
   // GETTING FRIEND ID fROM THE URL
   const { friend_id } = useParams();
 

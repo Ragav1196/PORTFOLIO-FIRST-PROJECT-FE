@@ -1,0 +1,29 @@
+/* HEADER */
+.G_Header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  background-color: #d9d9d9;
+}
+
+.G_Header > h1 {
+  font-size: 23px;
+  padding: 10px 0px;
+}
+
+.G_Header > div {
+  padding: 10px 0px;
+}
+
+.G_Header > div > button:nth-of-type(1) {
+  background-color: #ff5216;
+  width: 150px;
+}
+
+.G_Header > div > button:nth-of-type(2) {
+  background-color: #5bc5a7;
+  width: 150px;
+  margin-left: 20px;
+}

@@ -1,27 +1,58 @@
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { useContext, useState } from "react";
+import "./MainPage.css";
+import { useParams } from "react-router-dom";
+import { ChoosePayer } from "./ChoosePayer";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import "./AddExpense.css";
-import { context } from "../../Routes/Links";
+import { useContext, useState } from "react";
 import { SearchNames, DeleteFrndName } from "./functions";
 import { FriendsNamesCntr } from "./FriendsNamesCntr";
-import { ExpenseBody } from "../Expense Body/ExpenseBody";
+import { context } from "../../../Routes/Links";
+import { ExpenseBody } from "./ExpenseBody";
+import { decodeToken } from "react-jwt";
 
-export function AddExpense({ showAddExp, SetShowAddExp }) {
-  // GETTING FRND NAME FROM DATABASE THROUGH USECONTEXT
-  const { frndsLst } = useContext(context);
+export function MainPage() {
+  const { grpsLst, showAddExp, SetShowAddExp } = useContext(context);
+
+  // DECODING THE TOKEN
+  const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
+
+  // SEPERATING ONLY THE MEMBERS NAME FROM THE "grpList" OBJECT
+  let grpMembers = [];
+  if (grpsLst) {
+    const grpMembersDetails = grpsLst.members;
+    grpMembers = grpMembersDetails.map((data) => data.name);
+  }
+
+  // TO SHOW/HIDE THE "ChoosePayer" COMPONENT
+  const [moveCntrs, setMoveCntrs] = useState(false);
+  const styles = {
+    transform: moveCntrs ? "translate(0px, 0px)" : "translate(200px, 0px)",
+  };
+
+  // TO SHOW OR HIDE THE MULTIPLE PAYER FORM WHERE USERS CAN SPLIT AND RECORD THE TOTAL AMOUNT BETWEEN THEM
+  const [multPayer, setMultPayer] = useState(false);
 
   //   TO SHOW OR HIDE SEARCH RESULTS
   const [search, setSearch] = useState([]);
+
+  // TO SET WHO IS PAYING THE CURRENT EXPENSE
+  const [paidPersn, setPaidPersn] = useState("You");
+
+  // TO SET THE TOTAL AMOUNT SPENT FOR THE CURRENT EXPENSE
+  const [totalAmt, setTotalAmt] = useState(0);
 
   // TO ADD FRIENDS NAME BESIDE SEARCH FIELD
   const [addFriend, setAddFriend] = useState([]);
 
   // TO CHANGE THE SEARCH INPUT FIELD
   const [input, setInput] = useState("");
+
+  // TO SET PAYMENT DETAILS WHERE MULTIPLE USERS SHARE THE AMOUNT
+  const [multiplePayment, setMultiplePayment] = useState({});
 
   // TO ADD AN ARRAY OF FRIENDS LIST TO THE "addFriend" USESTATE
   let FriendsArr = [];
@@ -46,7 +77,7 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
   return (
     <section className={`AE_MainCntr ${showAddExp ? "" : "AE_MainCntrDisp"}`}>
       {showAddExp ? (
-        <article className="AE_AddExpCntr">
+        <article style={styles} className="AE_AddExpCntr">
           <div className="AE_Heading">
             <p>Add An Expense</p>
             <IconButton
@@ -66,7 +97,7 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
                 With you and :
               </p>
 
-              {/* <div>
+              <div>
                 {addFriend
                   ? addFriend.map((data, i) => (
                       <Stack id="AE_Chip" key={i} direction="row" spacing={1}>
@@ -90,16 +121,16 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
                 <input
                   onChange={(e) => {
                     setInput(e.target.value);
-                    SearchNames(e, frndsLst, setSearch);
+                    SearchNames(e, grpMembers, setSearch);
                   }}
                   type="text"
                   placeholder="Enter Your Friend name"
                   value={input}
                 />
-              </div> */}
+              </div>
             </div>
 
-            {/* <FriendsNamesCntr
+            <FriendsNamesCntr
               search={search}
               IsFriendsNameSame={IsFriendsNameSame}
               setAddFriend={setAddFriend}
@@ -107,74 +138,41 @@ export function AddExpense({ showAddExp, SetShowAddExp }) {
               setInput={setInput}
               FriendsArr={FriendsArr}
               FriendName={FriendName}
-            /> */}
-            <ExpenseBody FriendName={FriendName} />
+              setMoveCntrs={setMoveCntrs}
+              moveCntrs={moveCntrs}
+            />
+
+            <ExpenseBody
+              moveCntrs={moveCntrs}
+              setMoveCntrs={setMoveCntrs}
+              FriendName={FriendName}
+              multPayer={multPayer}
+              setMultPayer={setMultPayer}
+              paidPersn={paidPersn}
+              setPaidPersn={setPaidPersn}
+              totalAmt={totalAmt}
+              setTotalAmt={setTotalAmt}
+              multiplePayment={multiplePayment}
+              grpMembers={grpMembers}
+            />
           </div>
         </article>
       ) : (
         ""
       )}
+
+      <ChoosePayer
+        grpMembers={grpMembers}
+        moveCntrs={moveCntrs}
+        setMoveCntrs={setMoveCntrs}
+        multPayer={multPayer}
+        setMultPayer={setMultPayer}
+        paidPersn={paidPersn}
+        setPaidPersn={setPaidPersn}
+        setTotalAmt={setTotalAmt}
+        multiplePayment={multiplePayment}
+        setMultiplePayment={setMultiplePayment}
+      />
     </section>
-  );
-}
-
-
-
-
-
-
-
-
-
-
-import { ExpenseBody } from "../Expense Body/ExpenseBody";
-
-export function FriendsNamesCntr({
-  search,
-  IsFriendsNameSame,
-  setAddFriend,
-  setSearch,
-  setInput,
-  FriendsArr,
-  FriendName,
-}) {
-  return (
-    <div className="AE_FriendsNamesCntr">
-      <ExpenseBody FriendName={FriendName} />
-      <div>
-        {search
-          ? search.map((data, i) => (
-              <div
-                key={i}
-                onClick={() => {
-                  if (FriendsArr[0]) {
-                    const result = IsFriendsNameSame(data);
-                    if (result) {
-                      FriendsArr.push(result);
-                      setAddFriend(FriendsArr);
-                      setSearch([]);
-                      setInput("");
-                      return;
-                    }
-                  } else {
-                    FriendsArr.push(data);
-                    setAddFriend(FriendsArr);
-                    setSearch([]);
-                    setInput("");
-                    return;
-                  }
-                }}
-                className="AE_FriendsNames"
-              >
-                <img
-                  src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-grey5-100px.png"
-                  alt="Profile"
-                />
-                <p>{data}</p>
-              </div>
-            ))
-          : ""}
-      </div>
-    </div>
   );
 }

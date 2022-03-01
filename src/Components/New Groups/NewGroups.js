@@ -64,8 +64,7 @@ export function NewGroups({ setGrpsLst }) {
         if (!data.Access) {
           return;
         }
-        const GroupsName = data.GroupName.map((data) => data);
-        setGrpsLst(GroupsName);
+        setGrpsLst(data);
       });
       return history.push("/dashboard");
     }

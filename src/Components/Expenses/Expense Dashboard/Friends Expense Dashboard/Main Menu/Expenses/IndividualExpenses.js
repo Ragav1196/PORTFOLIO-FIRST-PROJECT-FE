@@ -1,8 +1,8 @@
 import "./Friend.css";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { useContext, useEffect, useState } from "react";
-import { context } from "../../../Routes/Links";
+import { useContext, useState } from "react";
+import { context } from "../../../../../Routes/Links";
 import { IndividualExpensesDetails } from "./IndividualExpensesDetails";
 
 export function IndividualExpenses() {

@@ -23,12 +23,6 @@ export function ChoosePayer({
     transform: moveCntrs ? "translate(0px, 0px)" : "translate(-200px, 20px)",
   };
 
-  /* 
-  TO SHOW AN ERROR IF THE AMOUNT ENTERED MANUALLY FOR EACH USER IS NOT EQUAL TO 
-    THE TOTAL AMOUNT 
-  */
-  const [AmtExceeding, setAmtExceeding] = useState("");
-
   // FORM VALIDATION
   const formValidationSchema = yup.object({
     user: yup
@@ -147,18 +141,6 @@ export function ChoosePayer({
             <button id="btnDfltStyle" type="submit">
               ADD
             </button>
-
-            {AmtExceeding === "grt" ? (
-              <p>AMOUNT IS EXCEEDING THE TOTAL AMOUNT </p>
-            ) : (
-              ""
-            )}
-
-            {AmtExceeding === "ls" ? (
-              <p>AMOUNT IS FALLING SHORT OF THE TOTAL AMOUNT </p>
-            ) : (
-              ""
-            )}
           </form>
         ) : (
           ""

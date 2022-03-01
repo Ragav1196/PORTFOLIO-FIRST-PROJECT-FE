@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { context } from "../../../Routes/Links";
+import { context } from "../../../../../Routes/Links";
 
 export function IndividualExpensesDetails({
   description,
@@ -14,7 +14,7 @@ export function IndividualExpensesDetails({
   const { expenses } = FriendChannel;
 
   // TO CHANGE THE COLUMN AND COLOR BASED ON WHO IS LENDING OR OWING THE MONEY
-  const reverseColumnsStyles = { flexDirection: "column-reverse" };  
+  const reverseColumnsStyles = { flexDirection: "column-reverse" };
   const changeColorStyles = { color: "red" };
 
   return (

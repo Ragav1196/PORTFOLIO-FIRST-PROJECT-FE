@@ -1,4 +1,4 @@
-import { ExpenseBody } from "../Expense Body/ExpenseBody";
+import { ExpenseBody } from "./ExpenseBody";
 
 export function FriendsNamesCntr({
   search,
@@ -7,11 +7,9 @@ export function FriendsNamesCntr({
   setSearch,
   setInput,
   FriendsArr,
-  FriendName,
 }) {
   return (
     <div className="AE_FriendsNamesCntr">
-      <ExpenseBody FriendName={FriendName} />
       <div>
         {search
           ? search.map((data, i) => (

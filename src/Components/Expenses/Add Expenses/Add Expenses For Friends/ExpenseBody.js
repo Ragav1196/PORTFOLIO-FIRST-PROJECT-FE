@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { decodeToken } from "react-jwt";
 import { useContext, useEffect } from "react";
-import { context } from "../../Routes/Links";
-import { API_URL } from "../../Global Constants/GlobalConstants";
-import { AddExpenseToDb } from "../../AddDataToDatabase";
+import { context } from "../../../Routes/Links";
+import { API_URL } from "../../../Global Constants/GlobalConstants";
+import { AddExpenseToDb } from "../../../AddDataToDatabase";
 
 export function ExpenseBody({
   paidPersn,
@@ -20,6 +20,7 @@ export function ExpenseBody({
   setMultiplePayment,
 }) {
   const { SetShowAddExp } = useContext(context);
+
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
   const decodedObj = decodeToken(Token);
@@ -28,7 +29,7 @@ export function ExpenseBody({
   const link = "add-friends-expenses";
   function callingAddToDbFn(expenseDetails) {
     const response = AddExpenseToDb(expenseDetails, link);
-    response.then((data) => console.log(data)).then(() => SetShowAddExp(false));
+    response.then(() => SetShowAddExp(false));
   }
 
   // FORM VALIDATION
@@ -37,8 +38,8 @@ export function ExpenseBody({
     amount: yup
       .number()
       .required("Please provide a amount")
-      .positive("Please provide amount greater than 0")
-      .min(1, "Please provide amount greater than 0"),
+      .positive("Please provide amount greater than zero")
+      .min(1, "Please provide amount greater than zero"),
   });
 
   // FORMIK
@@ -166,12 +167,12 @@ export function ExpenseBody({
               setTotalAmt(0);
               setPaidPersn("You");
             }}
-            id="btnDfltStyle"
+            className="btnDfltStyle"
             type="button"
           >
             Cancel
           </button>
-          <button id="btnDfltStyle" type="submit">
+          <button className="btnDfltStyle" type="submit">
             Save
           </button>
         </article>
