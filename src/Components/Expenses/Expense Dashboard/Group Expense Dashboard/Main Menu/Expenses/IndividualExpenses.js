@@ -44,7 +44,7 @@ export function IndividualExpenses({ groupDetails }) {
                       <p>
                         ₹
                         {amount.map(({ name, paid }) =>
-                          decodedObj.id.name === name ? paid : 0
+                          decodedObj.id.name === name ? paid : ""
                         )}
                       </p>
                     </div>
