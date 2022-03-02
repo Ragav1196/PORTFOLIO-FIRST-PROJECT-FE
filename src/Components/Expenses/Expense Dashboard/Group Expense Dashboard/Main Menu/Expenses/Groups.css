@@ -27,3 +27,25 @@
   width: 150px;
   margin-left: 20px;
 }
+
+/* AMOUNT DETAILS */
+.group_IED_Cntr > article:nth-of-type(2) > p,
+.group_IED_Cntr > article:nth-of-type(3) > p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* MEMBERS TO SETTLE UP  */
+.group_IED_Cntr > article:nth-of-type(3) {
+  flex-direction: column;
+}
+
+.group_IED_Cntr > article:nth-of-type(3) > div {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+}
+
+.group_IED_Cntr > article:nth-of-type(3) > div > p span {
+  font-weight: 700;
+}

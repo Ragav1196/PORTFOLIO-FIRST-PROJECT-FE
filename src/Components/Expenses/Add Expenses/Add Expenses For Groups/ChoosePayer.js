@@ -5,7 +5,7 @@ import "./ExpenseBody.css";
 import { decodeToken } from "react-jwt";
 
 export function ChoosePayer({
-  grpMembers,
+  membersArr,
   moveCntrs,
   setMoveCntrs,
   multPayer,
@@ -24,15 +24,15 @@ export function ChoosePayer({
     transform: moveCntrs ? "translate(0px, 0px)" : "translate(-200px, 20px)",
   };
 
-  // ADDING DETAILS FOR THE FORMIK INITIAL VALUES AND YUP VALLIDATIONS DYNAMICALY USING MAP FUNCTION FROM THE "grpMembers"
+  // ADDING DETAILS FOR THE FORMIK INITIAL VALUES AND YUP VALLIDATIONS DYNAMICALY USING MAP FUNCTION FROM THE "membersArr"
   const [formikYup, setformikYup] = useState({});
 
-  // WHENEVER "grpMembers" CHANGE THIS FUNCTION WILL BE CALLED
+  // WHENEVER "membersArr" CHANGE THIS FUNCTION WILL BE CALLED
   useEffect(() => {
-    if (grpMembers[0]) {
+    if (membersArr) {
       let yupObj = {}; //OBJECT VALUE FOR YUP VALLIDATION
       let formikObj = {}; //INTIAL VALUE FOR THE FORMIK INITIAL VALUES
-      grpMembers.map((data) => {
+      membersArr.map((data) => {
         yupObj[data] = yup
           .number()
           .required("Please provide a amount")
@@ -42,7 +42,7 @@ export function ChoosePayer({
       });
       setformikYup({ yupValidation: yupObj, formikInitialValues: formikObj });
     }
-  }, [grpMembers]);
+  }, [membersArr]);
 
   // VALIDATION
   const formValidationSchema = yup.object({
@@ -190,24 +190,26 @@ export function ChoosePayer({
       </article>
 
       <article className="CP_UsersCntr">
-        {grpMembers.map((data, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              setMoveCntrs(false);
-              setMultPayer(false);
-              setPaidPersn(data);
-              setTotalAmt(0);
-              setMultiplePayment({});
-            }}
-          >
-            <img
-              src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-blue8-50px.png"
-              alt=""
-            />
-            <p>{data}</p>
-          </div>
-        ))}
+        {membersArr
+          ? membersArr.map((data, i) => (
+              <div
+                key={i}
+                onClick={() => {
+                  setMoveCntrs(false);
+                  setMultPayer(false);
+                  setPaidPersn(data);
+                  setTotalAmt(0);
+                  setMultiplePayment({});
+                }}
+              >
+                <img
+                  src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-blue8-50px.png"
+                  alt=""
+                />
+                <p>{data}</p>
+              </div>
+            ))
+          : ""}
       </article>
 
       {/* MULTIPLE PAYMENT CONTAINER */}
@@ -216,7 +218,7 @@ export function ChoosePayer({
         {multPayer ? (
           <form onSubmit={handleSubmit}>
             <div>
-              {grpMembers.map((data, i) => (
+              {membersArr.map((data, i) => (
                 <div key={i}>
                   <p>{data}</p>
                   <input

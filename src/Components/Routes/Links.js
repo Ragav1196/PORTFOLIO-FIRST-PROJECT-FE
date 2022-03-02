@@ -34,6 +34,9 @@ export function Links() {
   // STORING THE EXPENSE DATA FROM THE DATABASE FOR FRIENDS TO THIS STATE
   const [expensesFrmDb, setExpensesFrmDb] = useState({});
 
+  // STORING GROUP EXPENSE DETAILS FROM THE DATABASE
+  const [grpExpensesFrmDb, setGrpExpensesFrmDb] = useState({});
+
   // CREATING OBJECT WITH THE DATA FROM THE DB TO USE IN USECONTEXT
   const obj = {
     frndsLst,
@@ -44,6 +47,8 @@ export function Links() {
     SetShowAddExp,
     expensesFrmDb,
     setExpensesFrmDb,
+    grpExpensesFrmDb,
+    setGrpExpensesFrmDb,
   };
 
   // GETTING FRIENDS FROM BACKEND

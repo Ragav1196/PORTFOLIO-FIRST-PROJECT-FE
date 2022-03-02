@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 export function ExpenseBody({
   setMoveCntrs,
-  grpMembers,
+  membersArr,
   totalAmt,
   moveCntrs,
   setMultPayer,
@@ -22,7 +22,7 @@ export function ExpenseBody({
 
   const { id } = useParams();
 
-  const grpMembersLength = grpMembers.length;
+  const grpMembersLength = membersArr.length;
 
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
@@ -75,7 +75,7 @@ export function ExpenseBody({
         result.persnToRtnAmt = multiplePayment.persnToRtnAmt;
       } else {
         if (paidPersn === "You") {
-          grpMembers.forEach((data) => {
+          membersArr.forEach((data) => {
             if (data !== decodedObj.id.name) {
               result.persnToRtnAmt.push({
                 name: data,
@@ -85,7 +85,7 @@ export function ExpenseBody({
             }
           });
         } else {
-          grpMembers.forEach((data) => {
+          membersArr.forEach((data) => {
             if (data !== paidPersn) {
               result.persnToRtnAmt.push({
                 name: data,
@@ -110,7 +110,7 @@ export function ExpenseBody({
         result.friendsName = multiplePayment.friendsName;
       } else {
         result.friendsName = [];
-        grpMembers.forEach((data) => {
+        membersArr.forEach((data) => {
           if (data !== decodedObj.id.name) {
             result.friendsName.push({
               name: data,

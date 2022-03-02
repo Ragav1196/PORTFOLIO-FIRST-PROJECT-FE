@@ -14,18 +14,14 @@ import { ExpenseBody } from "./ExpenseBody";
 import { decodeToken } from "react-jwt";
 
 export function MainPage() {
-  const { grpsLst, showAddExp, SetShowAddExp } = useContext(context);
+  const { grpsLst, showAddExp, SetShowAddExp, grpExpensesFrmDb } =
+    useContext(context);
+
+  const membersArr = grpExpensesFrmDb.members; //TAKING OUT THE MEMBERS ARRAY
 
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
   const decodedObj = decodeToken(Token);
-
-  // SEPERATING ONLY THE MEMBERS NAME FROM THE "grpList" OBJECT
-  let grpMembers = [];
-  if (grpsLst) {
-    const grpMembersDetails = grpsLst.members;
-    grpMembers = grpMembersDetails.map((data) => data.name);
-  }
 
   // TO SHOW/HIDE THE "ChoosePayer" COMPONENT
   const [moveCntrs, setMoveCntrs] = useState(false);
@@ -121,7 +117,7 @@ export function MainPage() {
                 <input
                   onChange={(e) => {
                     setInput(e.target.value);
-                    SearchNames(e, grpMembers, setSearch);
+                    SearchNames(e, membersArr, setSearch);
                   }}
                   type="text"
                   placeholder="Enter Your Friend name"
@@ -153,7 +149,7 @@ export function MainPage() {
               totalAmt={totalAmt}
               setTotalAmt={setTotalAmt}
               multiplePayment={multiplePayment}
-              grpMembers={grpMembers}
+              membersArr={membersArr}
             />
           </div>
         </article>
@@ -162,7 +158,7 @@ export function MainPage() {
       )}
 
       <ChoosePayer
-        grpMembers={grpMembers}
+        membersArr={membersArr}
         moveCntrs={moveCntrs}
         setMoveCntrs={setMoveCntrs}
         multPayer={multPayer}
