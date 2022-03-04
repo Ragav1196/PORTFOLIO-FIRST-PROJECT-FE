@@ -3,7 +3,6 @@ import IconButton from "@mui/material/IconButton";
 import { useContext } from "react";
 import { decodeToken } from "react-jwt";
 import { useHistory } from "react-router-dom";
-import { API_URL } from "../../Global Constants/GlobalConstants";
 import { LinksContext } from "../../Routes/Links";
 
 export function FriendsNames() {

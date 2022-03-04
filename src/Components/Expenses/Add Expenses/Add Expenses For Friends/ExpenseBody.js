@@ -96,10 +96,10 @@ export function ExpenseBody({
     if (multiplePayment.isMultipleUsersPaid) {
       return setFieldValue("amount", totalAmt);
     }
-  }, [totalAmt]);
+  }, [totalAmt, multiplePayment.isMultipleUsersPaid, setFieldValue]);
 
   // TO RESET THE FORM WHENEVER THE PAID PERSON IS CHANGED
-  useEffect(() => resetForm(), [paidPersn]);
+  useEffect(() => resetForm(), [paidPersn, resetForm]);
 
   return (
     <form onSubmit={handleSubmit} className="EB_FormCntr" action="">

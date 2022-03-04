@@ -10,18 +10,13 @@ import { Home } from "../Home Page/Home";
 import { TopBar } from "../Top Bar/Top Bar";
 import { NewFriends } from "../New Friends/NewFriends";
 import { FriendsListFn, GroupsListFn } from "../GetDataFrmDatabase";
-import { decodeToken } from "react-jwt";
 import { MainContent as GroupsMainContent } from "../Expenses/Expense Dashboard/Group Expense Dashboard/MainContent/MainContent";
 import { MainPage as GroupsAddExpense } from "../Expenses/Add Expenses/Add Expenses For Groups/MainPage";
 
 // USING USE CONTEXT
 export const LinksContext = createContext({});
 
-export function Links() {
-  // DECODING THE TOKEN
-  const Token = localStorage.getItem("Token");
-  const decodedObj = decodeToken(Token);
-
+export function Links({ decodedObj }) {
   // TO SAVE FRIENDS LIST FROM DATABASE
   const [frndsLst, setFrndsLst] = useState([]);
 
@@ -62,7 +57,7 @@ export function Links() {
         setFrndsLst(data);
       });
     }
-  }, []);
+  }, [decodedObj]);
 
   // GETTING GROUPS FROM BACKEND
   useEffect(() => {
@@ -75,7 +70,7 @@ export function Links() {
         setGrpsLst(data.groupsDetails);
       });
     }
-  }, []);
+  }, [decodedObj]);
 
   return (
     <LinksContext.Provider value={obj}>

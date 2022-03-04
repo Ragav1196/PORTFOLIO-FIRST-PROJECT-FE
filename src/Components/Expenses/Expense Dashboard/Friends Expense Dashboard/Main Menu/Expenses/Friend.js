@@ -14,19 +14,23 @@ export function Friend() {
   const { user_id, friend_id } = useParams();
 
   // GETTING EXPENSE DATA FROM THE DATABASE
-  async function GetExpenses() {
+  // async function GetExpenses() {
+  //   if (!showAddExp) {
+  //     await fetch(`${API_URL}/get-friends-expenses/${user_id}/${friend_id}`)
+  //       .then((data) => data.json())
+  //       .then((data) => setExpensesFrmDb(data));
+  //   }
+  //   return;
+  // }
+
+  // WHENEVER THE FRIEND ID IS CHANGED IN THE URL OR EXPENSE ADDED , THIS FUNCTION WILL BE CALLED
+  useEffect(() => {
     if (!showAddExp) {
-      const response = await fetch(
-        `${API_URL}/get-friends-expenses/${user_id}/${friend_id}`
-      )
+      fetch(`${API_URL}/get-friends-expenses/${user_id}/${friend_id}`)
         .then((data) => data.json())
         .then((data) => setExpensesFrmDb(data));
     }
-    return;
-  }
-
-  // WHENEVER THE FRIEND ID IS CHANGED IN THE URL OR EXPENSE ADDED , THIS FUNCTION WILL BE CALLED
-  useEffect(GetExpenses, [friend_id, showAddExp]);
+  }, [friend_id, showAddExp, setExpensesFrmDb, user_id]);
   const { friend } = expensesFrmDb;
 
   return (
@@ -42,7 +46,7 @@ export function Friend() {
           </article>
 
           {/* <Groups /> */}
-          <IndividualExpenses GetExpenses={GetExpenses} />
+          <IndividualExpenses />
         </>
       ) : (
         ""

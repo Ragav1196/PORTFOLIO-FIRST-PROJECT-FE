@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import "./ExpenseBody.css";
 import { decodeToken } from "react-jwt";
@@ -38,7 +37,7 @@ export function ChoosePayer({
   });
 
   // FORMIK
-  const { handleChange, values, handleSubmit, handleBlur, errors } = useFormik({
+  const { handleChange, values, handleSubmit, handleBlur } = useFormik({
     initialValues: {
       user: "",
       friend: "",

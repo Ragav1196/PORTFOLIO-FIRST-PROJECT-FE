@@ -64,11 +64,11 @@ export function IndividualExpenses({ groupDetails }) {
                       <p>You Lent</p>
                       <p>
                         ₹
-                        {persnToRtnAmt.map(({ name, AmountToPay, payTo }) => {
+                        {persnToRtnAmt.map(({ AmountToPay, payTo }) => {
                           if (decodedObj.id.name === payTo) {
                             amtLent += AmountToPay;
                           }
-                          return 0;
+                          return null;
                         })}
                         {amtLent}
                       </p>
@@ -83,7 +83,7 @@ export function IndividualExpenses({ groupDetails }) {
                             if (decodedObj.id.name === name) {
                               amtOwe += AmountToPay;
                             }
-                            return 0;
+                            return null;
                           })}
                           {amtOwe}
                         </p>

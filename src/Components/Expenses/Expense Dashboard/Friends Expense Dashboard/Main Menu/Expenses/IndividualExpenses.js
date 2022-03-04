@@ -73,7 +73,7 @@ export function IndividualExpenses() {
                         if (data.name === decodedObj.id.name) {
                           return data.paid;
                         }
-                        return 0;
+                        return null;
                       })}
                     </p>
                   </div>
