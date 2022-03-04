@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../../../../Global Constants/GlobalConstants";
-import { context } from "../../../../../Routes/Links";
+import { LinksContext } from "../../../../../Routes/Links";
 import "./Groups.css";
 import { IndividualExpenses } from "./IndividualExpenses";
 
@@ -10,7 +10,7 @@ export function Groups() {
   const history = useHistory();
   const { id } = useParams();
   const { showAddExp, SetShowAddExp, grpExpensesFrmDb, setGrpExpensesFrmDb } =
-    useContext(context);
+    useContext(LinksContext);
 
   // GETTING EXPENSE DETAILS FROM DATABASE
   async function GetExpenses() {

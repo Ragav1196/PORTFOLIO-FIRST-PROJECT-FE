@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { context } from "../../../../../Routes/Links";
+import { decodeToken } from "react-jwt";
 
 export function IndividualExpensesDetails({
   description,
@@ -9,17 +8,13 @@ export function IndividualExpensesDetails({
   i,
   show,
 }) {
-  const { expensesFrmDb } = useContext(context);
-  const { FriendChannel } = expensesFrmDb;
-  const { expenses } = FriendChannel;
-
-  // TO CHANGE THE COLUMN AND COLOR BASED ON WHO IS LENDING OR OWING THE MONEY
-  const reverseColumnsStyles = { flexDirection: "column-reverse" };
-  const changeColorStyles = { color: "red" };
+  // DECODING THE TOKEN
+  const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
 
   return (
     <section
-      style={{ maxHeight: show.shldOpen && show.i === i ? "177px" : "0px" }}
+      style={{ maxHeight: show.shldOpen && show.i === i ? "251px" : "0px" }}
       className="individualExpenseDetailsCntr"
     >
       <article>
@@ -30,54 +25,48 @@ export function IndividualExpensesDetails({
         <div>
           <p>{description}</p>
           <p>₹{totalAmount}</p>
-          <p>Addedd by {amount[0].name} on February 22, 2022</p>
+          <p>Addedd by {decodedObj.id.name} on February 22, 2022</p>
         </div>
       </article>
 
-      <article
-        style={
-          persnToRtnAmt.name === amount[0].name ? reverseColumnsStyles : {}
-        }
-      >
-        <div>
-          <img
-            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
-            alt="User"
-            className="userImg"
-          />
-          <p>
-            You paid <span>₹{amount[0].paid}</span> and{" "}
-            {persnToRtnAmt.name === amount[0].name ? "owe" : "lent"}{" "}
-            {amount[1].name}{" "}
-            <span
-              style={
-                persnToRtnAmt.name === amount[0].name ? changeColorStyles : {}
-              }
-              className="IED_Lent_or_Owe"
-            >
-              ₹{persnToRtnAmt.amount}
-            </span>
-          </p>
-        </div>
+      <article>
+        <p>AMOUNT PAID BY EACH MEMBER</p>
+        {amount.map((data, i) => (
+          <div key={i}>
+            <img
+              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
+              alt="User"
+              className="userImg"
+            />
 
+            <p>
+              {data.name} paid ₹{data.paid}
+            </p>
+          </div>
+        ))}
+
+        <p>MEMBER NEED TO SETTLE UP</p>
         <div>
           <img
             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
             alt="User"
             className="userImg"
           />
-          <p>
-            {amount[1].name} paid <span>₹{amount[1].paid}</span> and{" "}
-            {persnToRtnAmt.name === amount[1].name ? "owes" : "lent"} You{" "}
-            <span
-              style={
-                persnToRtnAmt.name === amount[1].name ? changeColorStyles : {}
-              }
-              className="IED_Lent_or_Owe"
-            >
-              ₹{persnToRtnAmt.amount}
-            </span>
-          </p>
+
+          {amount.map((data, i) => {
+            if (data.name !== persnToRtnAmt.name) {
+              return (
+                <p key={i}>
+                  {persnToRtnAmt.name === decodedObj.id.name
+                    ? "You"
+                    : persnToRtnAmt.name}{" "}
+                  owes {data.name === decodedObj.id.name ? "You" : data.name} ₹
+                  {persnToRtnAmt.amount}
+                </p>
+              );
+            }
+            return 0;
+          })}
         </div>
       </article>
     </section>

@@ -4,8 +4,10 @@ import { useHistory } from "react-router-dom";
 import { API_URL } from "../../Global Constants/GlobalConstants";
 import "./Login.css";
 import { useState } from "react";
+import { FriendsListFn, GroupsListFn } from "../../GetDataFrmDatabase";
+import { decodeToken } from "react-jwt";
 
-export function Login() {
+export function Login({ setFrndsLst, setGrpsLst }) {
   const history = useHistory();
 
   // TO GIVE ERROR WHEN CREDENTIALS IS INVALID:
@@ -24,6 +26,29 @@ export function Login() {
 
     if (data.Access) {
       localStorage.setItem("Token", data.token);
+
+      // DECODING THE TOKEN
+      const Token = localStorage.getItem("Token");
+      const decodedObj = decodeToken(Token);
+
+      // GETTING FRIENDS FROM BACKEND
+      const FriendsList = FriendsListFn(decodedObj);
+      FriendsList.then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        setFrndsLst(data);
+      });
+
+      // GETTING GROUPS FROM BACKEND
+      const GroupsList = GroupsListFn(decodedObj);
+      GroupsList.then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        setGrpsLst(data.groupsDetails);
+      });
+
       history.push("/dashboard");
       return;
     }

@@ -5,13 +5,18 @@ export function IndividualExpensesDetails({
   totalAmount,
   amount,
   persnToRtnAmt,
+  i,
+  show,
 }) {
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
   const decodedObj = decodeToken(Token);
 
   return (
-    <section className="individualExpenseDetailsCntr group_IED_Cntr">
+    <section
+      style={{ maxHeight: show.shldOpen && show.i === i ? "261px" : "0px" }}
+      className="individualExpenseDetailsCntr group_IED_Cntr"
+    >
       <article>
         <img
           src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
@@ -43,22 +48,20 @@ export function IndividualExpensesDetails({
 
       <article>
         <p>MEMBERS NEED TO SETTLE UP</p>
-        {persnToRtnAmt.map(({ name, payTo, AmountToPay }, i) => {
-          return (
-            <div key={i}>
-              <img
-                src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
-                alt="User"
-                className="userImg"
-              />
-              <p>
-                {name === decodedObj.id.name ? "You" : name} owes{" "}
-                {payTo === decodedObj.id.name ? "You" : payTo}{" "}
-                <span>₹{AmountToPay}</span>
-              </p>
-            </div>
-          );
-        })}
+        {persnToRtnAmt.map(({ name, payTo, AmountToPay }, i) => (
+          <div key={i}>
+            <img
+              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
+              alt="User"
+              className="userImg"
+            />
+            <p>
+              {name === decodedObj.id.name ? "You" : name} owes{" "}
+              {payTo === decodedObj.id.name ? "You" : payTo}{" "}
+              <span>₹{AmountToPay}</span>
+            </p>
+          </div>
+        ))}
       </article>
     </section>
   );

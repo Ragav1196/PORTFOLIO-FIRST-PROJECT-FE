@@ -2,7 +2,7 @@ import "./ExpenseBody.css";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useContext, useEffect } from "react";
-import { context } from "../../../Routes/Links";
+import { LinksContext } from "../../../Routes/Links";
 import { decodeToken } from "react-jwt";
 import { AddExpenseToDb } from "../../../AddDataToDatabase";
 import { useParams } from "react-router-dom";
@@ -18,7 +18,7 @@ export function ExpenseBody({
   setTotalAmt,
   multiplePayment,
 }) {
-  const { SetShowAddExp } = useContext(context);
+  const { SetShowAddExp } = useContext(LinksContext);
 
   const { id } = useParams();
 
@@ -53,7 +53,6 @@ export function ExpenseBody({
     handleBlur,
     resetForm,
     setFieldValue,
-    errors,
   } = useFormik({
     initialValues: {
       description: "",
@@ -146,7 +145,7 @@ export function ExpenseBody({
                 setMultPayer(false);
               }}
             >
-              {paidPersn === "Ragavendiran" ? "You" : paidPersn}
+              {paidPersn === decodedObj.id.name ? "You" : paidPersn}
             </p>
           </div>
         </article>
@@ -198,6 +197,8 @@ export function ExpenseBody({
         <article className="EB_SaveBtn">
           <button
             onClick={() => {
+              setMultPayer(false);
+              setMoveCntrs(false);
               SetShowAddExp(false);
             }}
             className="btnDfltStyle"

@@ -3,8 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { decodeToken } from "react-jwt";
 import { useContext, useEffect } from "react";
-import { context } from "../../../Routes/Links";
-import { API_URL } from "../../../Global Constants/GlobalConstants";
+import { LinksContext } from "../../../Routes/Links";
 import { AddExpenseToDb } from "../../../AddDataToDatabase";
 
 export function ExpenseBody({
@@ -19,7 +18,7 @@ export function ExpenseBody({
   setPaidPersn,
   setMultiplePayment,
 }) {
-  const { SetShowAddExp } = useContext(context);
+  const { SetShowAddExp } = useContext(LinksContext);
 
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
@@ -48,7 +47,6 @@ export function ExpenseBody({
     values,
     handleSubmit,
     handleBlur,
-    errors,
     setFieldValue,
     resetForm,
   } = useFormik({
@@ -163,6 +161,8 @@ export function ExpenseBody({
         <article className="EB_SaveBtn">
           <button
             onClick={() => {
+              setMultPayer(false);
+              setMoveCntrs(false);
               SetShowAddExp(false);
               setTotalAmt(0);
               setPaidPersn("You");

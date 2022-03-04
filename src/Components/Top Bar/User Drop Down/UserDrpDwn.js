@@ -12,7 +12,14 @@ export function UserDrpDwn({ hideUDD }) {
           <p>Create a group</p>
           <p>Fairness calculators</p>
           <p>Contact support</p>
-          <p onClick={() => history.push("/")}>Log out</p>
+          <p
+            onClick={() => {
+              localStorage.removeItem("Token");
+              history.push("/login");
+            }}
+          >
+            Log out
+          </p>
         </>
       ) : (
         ""

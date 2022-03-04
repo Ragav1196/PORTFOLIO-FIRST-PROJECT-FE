@@ -14,8 +14,8 @@ import { decodeToken } from "react-jwt";
 import { MainContent as GroupsMainContent } from "../Expenses/Expense Dashboard/Group Expense Dashboard/MainContent/MainContent";
 import { MainPage as GroupsAddExpense } from "../Expenses/Add Expenses/Add Expenses For Groups/MainPage";
 
-// USING USE CONTEXT TO SAVE DATA FROM DB
-export const context = createContext({});
+// USING USE CONTEXT
+export const LinksContext = createContext({});
 
 export function Links() {
   // DECODING THE TOKEN
@@ -37,7 +37,7 @@ export function Links() {
   // STORING GROUP EXPENSE DETAILS FROM THE DATABASE
   const [grpExpensesFrmDb, setGrpExpensesFrmDb] = useState({});
 
-  // CREATING OBJECT WITH THE DATA FROM THE DB TO USE IN USECONTEXT
+  // CREATING OBJECT TO USE IN USECONTEXT
   const obj = {
     frndsLst,
     setFrndsLst,
@@ -53,28 +53,32 @@ export function Links() {
 
   // GETTING FRIENDS FROM BACKEND
   useEffect(() => {
-    const FriendsList = FriendsListFn(decodedObj);
-    FriendsList.then((data) => {
-      if (!data.Access) {
-        return;
-      }
-      setFrndsLst(data);
-    });
+    if (decodedObj) {
+      const FriendsList = FriendsListFn(decodedObj);
+      FriendsList.then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        setFrndsLst(data);
+      });
+    }
   }, []);
 
   // GETTING GROUPS FROM BACKEND
   useEffect(() => {
-    const GroupsList = GroupsListFn(decodedObj);
-    GroupsList.then((data) => {
-      if (!data.access) {
-        return;
-      }
-      setGrpsLst(data);
-    });
+    if (decodedObj) {
+      const GroupsList = GroupsListFn(decodedObj);
+      GroupsList.then((data) => {
+        if (!data.Access) {
+          return;
+        }
+        setGrpsLst(data.groupsDetails);
+      });
+    }
   }, []);
 
   return (
-    <context.Provider value={obj}>
+    <LinksContext.Provider value={obj}>
       <Switch>
         {/* HOME PAGE */}
         <Route exact path="/">
@@ -83,7 +87,7 @@ export function Links() {
 
         {/* LOGIN */}
         <Route exact path="/login">
-          <Login />
+          <Login setFrndsLst={setFrndsLst} setGrpsLst={setGrpsLst} />
         </Route>
 
         {/* SIGN UP */}
@@ -121,6 +125,6 @@ export function Links() {
           <NewGroups setGrpsLst={setGrpsLst} />
         </Route>
       </Switch>
-    </context.Provider>
+    </LinksContext.Provider>
   );
 }

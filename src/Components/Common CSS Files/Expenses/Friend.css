@@ -122,33 +122,47 @@
 
 /* AMOUNT -> INDIVIDUAL EXPENSE -> LENT */
 .IE_Amount_Lent {
-  display: flex;
-  gap: 12px;
+  margin-right: 100px;
 }
 
-.IE_Amount_Lent > div > p:nth-of-type(1) {
+.IE_Amount_Lent > p:nth-of-type(1) {
   color: #999;
 }
 
-.IE_Amount_Lent > div > p:nth-of-type(2) {
+.IE_Amount_Lent > p:nth-of-type(2) {
   color: black;
   font-weight: bold;
 }
 
-.IE_Amount_Lent > div:nth-of-type(2) > button > svg {
+/* AMOUNT -> INDIVIDUAL EXPENSE -> OWES */
+.IE_Amount_Owe {
+  display: flex;
+  gap: 12px;
+}
+
+.IE_Amount_Owe > div > p:nth-of-type(1) {
+  color: #999;
+}
+
+.IE_Amount_Owe > div > p:nth-of-type(2) {
+  color: black;
+  font-weight: bold;
+}
+
+.IE_Amount_Owe > div:nth-of-type(2) > button > svg {
   width: 16px;
   opacity: 0;
   color: red;
 }
 
-.F_DetailsCntr:hover .IE_Amount_Lent > div:nth-of-type(2) > button > svg {
+.F_DetailsCntr:hover .IE_Amount_Owe > div:nth-of-type(2) > button > svg {
   opacity: unset;
 }
 
 /* INDIVIDUAL EXPENSES DETAILS */
 
 .IndividualExpensesDetailsCall {
-  overflow: hidden;
+  overflow: scroll;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 

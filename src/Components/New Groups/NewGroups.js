@@ -13,6 +13,7 @@ export function NewGroups({ setGrpsLst }) {
 
   // DECODING THE TOKEN
   const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
 
   // TO REASSIGN A NEW TOKEN
   const { reEvaluateToken } = useJwt(Token);
@@ -64,7 +65,7 @@ export function NewGroups({ setGrpsLst }) {
         if (!data.Access) {
           return;
         }
-        setGrpsLst(data);
+        setGrpsLst(data.groupsDetails);
       });
       return history.push("/dashboard");
     }
@@ -86,7 +87,7 @@ export function NewGroups({ setGrpsLst }) {
           <Formik
             initialValues={{
               groupName: "",
-              friendsList: ["Ragavendiran", ""],
+              friendsList: [decodedObj.id.name, ""],
             }}
             validationSchema={Schema}
             onSubmit={(GroupInfo) => {

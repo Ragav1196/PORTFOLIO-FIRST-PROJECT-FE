@@ -1,13 +1,18 @@
 import { useContext, useState } from "react";
+import { decodeToken } from "react-jwt";
 import { useHistory } from "react-router-dom";
-import { context } from "../Routes/Links";
+import { LinksContext } from "../Routes/Links";
 import "./Top Bar.css";
 import { UserDrpDwn } from "./User Drop Down/UserDrpDwn";
 
 export function TopBar() {
   const history = useHistory();
 
-  const { showAddExp } = useContext(context);
+  // DECODING THE TOKEN
+  const Token = localStorage.getItem("Token");
+  const decodedObj = decodeToken(Token);
+
+  const { showAddExp } = useContext(LinksContext);
 
   // TO HIDE USER DROP DOWN MENU
   const [hideUDD, setHideUDD] = useState(false);
@@ -32,7 +37,7 @@ export function TopBar() {
           src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-ruby12-50px.png"
           alt="Profile pic"
         />
-        <p className="TB_ProfileName">Ragavendiran Panchatsharam</p>
+        <p className="TB_ProfileName">{decodedObj.id.name}</p>
         <UserDrpDwn hideUDD={hideUDD} />
       </article>
     </section>

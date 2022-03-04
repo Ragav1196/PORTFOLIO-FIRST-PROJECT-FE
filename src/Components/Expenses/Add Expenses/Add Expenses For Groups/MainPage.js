@@ -1,27 +1,21 @@
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import "./MainPage.css";
-import { useParams } from "react-router-dom";
 import { ChoosePayer } from "./ChoosePayer";
-import Avatar from "@mui/material/Avatar";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+// import Avatar from "@mui/material/Avatar";
+// import Chip from "@mui/material/Chip";
+// import Stack from "@mui/material/Stack";
 import { useContext, useState } from "react";
-import { SearchNames, DeleteFrndName } from "./functions";
-import { FriendsNamesCntr } from "./FriendsNamesCntr";
-import { context } from "../../../Routes/Links";
+// import { SearchNames, DeleteFrndName } from "./functions";
+// import { FriendsNamesCntr } from "./FriendsNamesCntr";
+import { LinksContext } from "../../../Routes/Links";
 import { ExpenseBody } from "./ExpenseBody";
-import { decodeToken } from "react-jwt";
 
 export function MainPage() {
-  const { grpsLst, showAddExp, SetShowAddExp, grpExpensesFrmDb } =
-    useContext(context);
+  const { showAddExp, SetShowAddExp, grpExpensesFrmDb } =
+    useContext(LinksContext);
 
   const membersArr = grpExpensesFrmDb.members; //TAKING OUT THE MEMBERS ARRAY
-
-  // DECODING THE TOKEN
-  const Token = localStorage.getItem("Token");
-  const decodedObj = decodeToken(Token);
 
   // TO SHOW/HIDE THE "ChoosePayer" COMPONENT
   const [moveCntrs, setMoveCntrs] = useState(false);
@@ -32,8 +26,8 @@ export function MainPage() {
   // TO SHOW OR HIDE THE MULTIPLE PAYER FORM WHERE USERS CAN SPLIT AND RECORD THE TOTAL AMOUNT BETWEEN THEM
   const [multPayer, setMultPayer] = useState(false);
 
-  //   TO SHOW OR HIDE SEARCH RESULTS
-  const [search, setSearch] = useState([]);
+  /* //   TO SHOW OR HIDE SEARCH RESULTS
+  const [search, setSearch] = useState([]); */
 
   // TO SET WHO IS PAYING THE CURRENT EXPENSE
   const [paidPersn, setPaidPersn] = useState("You");
@@ -42,10 +36,10 @@ export function MainPage() {
   const [totalAmt, setTotalAmt] = useState(0);
 
   // TO ADD FRIENDS NAME BESIDE SEARCH FIELD
-  const [addFriend, setAddFriend] = useState([]);
+  const [addFriend, /* setAddFriend */] = useState([]);
 
-  // TO CHANGE THE SEARCH INPUT FIELD
-  const [input, setInput] = useState("");
+  /* // TO CHANGE THE SEARCH INPUT FIELD
+  const [input, setInput] = useState(""); */
 
   // TO SET PAYMENT DETAILS WHERE MULTIPLE USERS SHARE THE AMOUNT
   const [multiplePayment, setMultiplePayment] = useState({});
@@ -54,7 +48,7 @@ export function MainPage() {
   let FriendsArr = [];
   FriendsArr.push(...addFriend);
 
-  function IsFriendsNameSame(data) {
+  /* function IsFriendsNameSame(data) {
     let isNameSame = true;
     for (let i = 0; i < FriendsArr.length; i++) {
       if (FriendsArr[i] === data) {
@@ -66,7 +60,7 @@ export function MainPage() {
     } else {
       return 0;
     }
-  }
+  } */
 
   const FriendName = addFriend[0];
 
@@ -77,7 +71,11 @@ export function MainPage() {
           <div className="AE_Heading">
             <p>Add An Expense</p>
             <IconButton
-              onClick={() => SetShowAddExp(false)}
+              onClick={() => {
+                setMultPayer(false);
+                setMoveCntrs(false);
+                SetShowAddExp(false);
+              }}
               aria-label="delete"
             >
               <CloseIcon />
@@ -85,7 +83,7 @@ export function MainPage() {
           </div>
 
           <div className="AE_Details">
-            <div
+            {/* <div
               style={{ borderBottomColor: search[0] ? "black" : "#ccc" }}
               className="AE_SearchFriends"
             >
@@ -136,7 +134,7 @@ export function MainPage() {
               FriendName={FriendName}
               setMoveCntrs={setMoveCntrs}
               moveCntrs={moveCntrs}
-            />
+            /> */}
 
             <ExpenseBody
               moveCntrs={moveCntrs}

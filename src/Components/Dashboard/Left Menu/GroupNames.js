@@ -2,24 +2,18 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import IconButton from "@mui/material/IconButton";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { context } from "../../Routes/Links";
+import { LinksContext } from "../../Routes/Links";
 
 export function GroupNames() {
   const history = useHistory();
 
   // GETTING GROUPS DETAILS FROM DATABASE THROUGH USECONTEXT
-  const { grpsLst } = useContext(context);
-
-  // SEPERATING ONLY THE GROUP NAME AND ID FORM THE "grpLst" OBJECT
-  let groupsDetails = [];
-  if (grpsLst) {
-    groupsDetails = grpsLst.groupsDetails;
-  }
+  const { grpsLst } = useContext(LinksContext);
 
   return (
     <>
-      {groupsDetails[0] ? (
-        groupsDetails.map((data, i) => {
+      {grpsLst ? (
+        grpsLst.map((data, i) => {
           return (
             <div
               onClick={() => history.push(`/groups/${data._id}`)}

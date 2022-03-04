@@ -5,13 +5,13 @@ import "./MainPage.css";
 import { ExpenseBody } from "./ExpenseBody";
 import { useParams } from "react-router-dom";
 import { ChoosePayer } from "./ChoosePayer";
-import { context } from "../../../Routes/Links";
+import { LinksContext } from "../../../Routes/Links";
 
 export function MainPage() {
   // GETTING FRIEND ID fROM THE URL
   const { friend_id } = useParams();
 
-  const { showAddExp, SetShowAddExp } = useContext(context);
+  const { showAddExp, SetShowAddExp } = useContext(LinksContext);
 
   // TO SHOW/HIDE THE "ChoosePayer" COMPONENT
   const [moveCntrs, setMoveCntrs] = useState(false);
@@ -20,7 +20,7 @@ export function MainPage() {
   };
 
   // GETTING FRND NAME FROM DATABASE THROUGH USECONTEXT
-  const { frndsLst } = useContext(context);
+  const { frndsLst } = useContext(LinksContext);
 
   // TO SET WHO IS PAYING THE CURRENT EXPENSE
   const [paidPersn, setPaidPersn] = useState("You");
@@ -40,7 +40,6 @@ export function MainPage() {
     const frndDetailObj = frndsLst.friends.filter(
       ({ _id }) => _id === friend_id
     );
-    console.log(friend_id);
     friendFrmFrndsLst = frndDetailObj[0].name;
   }
 
@@ -51,7 +50,11 @@ export function MainPage() {
           <div className="AE_Heading">
             <p>Add An Expense</p>
             <IconButton
-              onClick={() => SetShowAddExp(false)}
+              onClick={() => {
+                setMultPayer(false);
+                setMoveCntrs(false);
+                SetShowAddExp(false);
+              }}
               aria-label="delete"
             >
               <CloseIcon />

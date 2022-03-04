@@ -3,8 +3,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "./SignUp.css";
 import { API_URL } from "../../Global Constants/GlobalConstants";
+import { useHistory } from "react-router-dom";
 
 export function SignUp() {
+  const history = useHistory();
+
   // TO ADD TWO MORE INPUT FIELDS WHEN THE MAIN FIELD IS TYPED
   const [typed, setTyped] = useState(false);
 
@@ -53,6 +56,7 @@ export function SignUp() {
       validationSchema: formValidationSchema,
       onSubmit: (userInfo) => {
         RegisterUser(userInfo);
+        history.push("/login");
       },
     });
 

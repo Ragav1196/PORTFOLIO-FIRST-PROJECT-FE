@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { decodeToken } from "react-jwt";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../Global Constants/GlobalConstants";
-import { context } from "../../Routes/Links";
+import { LinksContext } from "../../Routes/Links";
 
 export function FriendsNames() {
   // GETTING FRND NAME FROM DATABASE THROUGH USECONTEXT
-  const { frndsLst } = useContext(context);
+  const { frndsLst } = useContext(LinksContext);
   const history = useHistory();
 
   // GETTING USER ID FROM THE TOKEN

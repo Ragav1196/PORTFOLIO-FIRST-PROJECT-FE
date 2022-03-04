@@ -2,13 +2,13 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../../../../Global Constants/GlobalConstants";
-import { context } from "../../../../../Routes/Links";
+import { LinksContext } from "../../../../../Routes/Links";
 import "./Friend.css";
 import { IndividualExpenses } from "./IndividualExpenses";
 
 export function Friend() {
   const { showAddExp, SetShowAddExp, expensesFrmDb, setExpensesFrmDb } =
-    useContext(context);
+    useContext(LinksContext);
 
   // GETTING USER AND FRIEND ID FROM THE URL
   const { user_id, friend_id } = useParams();
