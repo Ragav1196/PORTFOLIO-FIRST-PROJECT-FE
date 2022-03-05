@@ -45,29 +45,35 @@ export function IndividualExpensesDetails({
           </div>
         ))}
 
-        <p>MEMBER NEED TO SETTLE UP</p>
-        <div>
-          <img
-            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
-            alt="User"
-            className="userImg"
-          />
-
-          {amount.map((data, i) => {
-            if (data.name !== persnToRtnAmt.name) {
-              return (
-                <p key={i}>
-                  {persnToRtnAmt.name === decodedObj.id.name
-                    ? "You"
-                    : persnToRtnAmt.name}{" "}
-                  owes {data.name === decodedObj.id.name ? "You" : data.name} ₹
-                  {persnToRtnAmt.amount}
-                </p>
-              );
-            }
-            return 0;
-          })}
-        </div>
+        {persnToRtnAmt.amount > 0 ? (
+          <>
+            <p>MEMBER NEED TO SETTLE UP</p>
+            <div>
+              <img
+                src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
+                alt="User"
+                className="userImg"
+              />
+              {amount.map((data, i) => {
+                if (data.name !== persnToRtnAmt.name) {
+                  return (
+                    <p key={i}>
+                      {persnToRtnAmt.name === decodedObj.id.name
+                        ? "You"
+                        : persnToRtnAmt.name}{" "}
+                      owes{" "}
+                      {data.name === decodedObj.id.name ? "You" : data.name} ₹
+                      {persnToRtnAmt.amount}
+                    </p>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </article>
     </section>
   );

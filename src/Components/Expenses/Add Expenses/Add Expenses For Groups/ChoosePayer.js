@@ -101,7 +101,7 @@ export function ChoosePayer({
           else if (data.amount > 0) {
             lentPersons.push({ name: data.name, amount: data.amount });
           }
-          return 0;
+          return null;
         });
 
         // SORTING OWE PERSONS FROM LESS AMOUNT TO HIGHEST AMOUNT

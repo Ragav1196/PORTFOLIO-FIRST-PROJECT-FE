@@ -28,7 +28,6 @@ export function IndividualExpensesDetails({
           <p>Added by You on February 22, 2022</p>
         </div>
       </article>
-
       <article>
         <p>AMOUNT PAID BY EACH MEMBER</p>
         {amount.map(({ paid, name }, i) => (
@@ -46,23 +45,27 @@ export function IndividualExpensesDetails({
         ))}
       </article>
 
-      <article>
-        <p>MEMBERS NEED TO SETTLE UP</p>
-        {persnToRtnAmt.map(({ name, payTo, AmountToPay }, i) => (
-          <div key={i}>
-            <img
-              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
-              alt="User"
-              className="userImg"
-            />
-            <p>
-              {name === decodedObj.id.name ? "You" : name} owes{" "}
-              {payTo === decodedObj.id.name ? "You" : payTo}{" "}
-              <span>₹{AmountToPay}</span>
-            </p>
-          </div>
-        ))}
-      </article>
+      {persnToRtnAmt.length ? (
+        <article>
+          <p>MEMBERS NEED TO SETTLE UP</p>
+          {persnToRtnAmt.map(({ name, payTo, AmountToPay }, i) => (
+            <div key={i}>
+              <img
+                src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/utilities/tv-phone-internet@2x.png"
+                alt="User"
+                className="userImg"
+              />
+              <p>
+                {name === decodedObj.id.name ? "You" : name} owes{" "}
+                {payTo === decodedObj.id.name ? "You" : payTo}{" "}
+                <span>₹{AmountToPay}</span>
+              </p>
+            </div>
+          ))}
+        </article>
+      ) : (
+        ""
+      )}
     </section>
   );
 }
