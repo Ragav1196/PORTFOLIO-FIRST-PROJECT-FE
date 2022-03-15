@@ -6,6 +6,7 @@ export function FriendsListFn(decodedObj) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-auth-token": localStorage.getItem("Token"),
     },
     body: JSON.stringify({
       friendsChannelId: decodedObj.id.friendsChannel,
@@ -22,6 +23,7 @@ export function GroupsListFn(decodedObj) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-auth-token": localStorage.getItem("Token"),
     },
     body: JSON.stringify({
       GroupsId: decodedObj.id.groups,

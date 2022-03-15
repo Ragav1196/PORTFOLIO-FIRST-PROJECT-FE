@@ -37,7 +37,7 @@ export function TopBar() {
           src="https://s3.amazonaws.com/splitwise/uploads/user/default_avatars/avatar-ruby12-50px.png"
           alt="Profile pic"
         />
-        <p className="TB_ProfileName">{decodedObj.id.name}</p>
+        <p className="TB_ProfileName">{decodedObj?.id.name}</p>
         <UserDrpDwn hideUDD={hideUDD} />
       </article>
     </section>

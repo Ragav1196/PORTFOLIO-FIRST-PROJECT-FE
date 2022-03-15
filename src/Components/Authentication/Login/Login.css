@@ -83,27 +83,12 @@
 
 .L_LoginDtlCntr > div > form > button {
   width: 80%;
-  height: 30px;
   cursor: pointer;
-}
-
-.L_LoginDtlCntr > div > form > button:nth-of-type(1) {
   background-color: #1cc29f;
   color: white;
   height: 40px;
   font-size: 18px;
   border: 1px solid #1cc29f;
-  border-radius: 18px;
-}
-
-.L_LoginDtlCntr > div > form > button:nth-of-type(2) {
-  background-color: white;
-  font-size: 18px;
-  height: 40px;
-  border: 1px solid white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius: 18px;
 }
 
@@ -114,18 +99,28 @@
   cursor: pointer;
 }
 
-.L_FrgtPwd  {
+.L_FrgtPwd {
   color: #1cc29f;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
 }
 
-/* .L_LoginDtlCntr > div > form > p:nth-of-type(2) {
-  color: #979797;
-} */
+/* LOGIN IN WITH GOOGLE BUTTON */
+.L_LoginDtlCntr > div > button {
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  height: 40px;
+  border: 1px solid white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 18px;
+  width: 80%;
+}
 
-.L_LoginDtlCntr > div > form > div > hr {
+.L_LoginDtlCntr > div > div > hr {
   display: inline-block;
   width: 30px;
   vertical-align: middle;
@@ -134,7 +129,7 @@
   border: none;
 }
 
-.L_LoginDtlCntr > div > form > div > span {
+.L_LoginDtlCntr > div > div > span {
   margin: 0px 5px;
 }
 

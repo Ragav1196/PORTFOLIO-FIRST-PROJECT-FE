@@ -167,12 +167,12 @@ export function ExpenseBody({
               setTotalAmt(0);
               setPaidPersn("You");
             }}
-            className="btnDfltStyle"
+            className="btnDefltStyle"
             type="button"
           >
             Cancel
           </button>
-          <button className="btnDfltStyle" type="submit">
+          <button className="btnDefltStyle" type="submit">
             Save
           </button>
         </article>

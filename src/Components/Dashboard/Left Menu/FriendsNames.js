@@ -13,7 +13,7 @@ export function FriendsNames() {
   // GETTING USER ID FROM THE TOKEN
   const Token = localStorage.getItem("Token");
   const decodedObj = decodeToken(Token);
-  const user_id = decodedObj.id._id;
+  const user_id = decodedObj?.id._id;
 
   return (
     <>

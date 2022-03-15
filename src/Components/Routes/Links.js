@@ -12,6 +12,8 @@ import { NewFriends } from "../New Friends/NewFriends";
 import { FriendsListFn, GroupsListFn } from "../GetDataFrmDatabase";
 import { MainContent as GroupsMainContent } from "../Expenses/Expense Dashboard/Group Expense Dashboard/MainContent/MainContent";
 import { MainPage as GroupsAddExpense } from "../Expenses/Add Expenses/Add Expenses For Groups/MainPage";
+import { ForgotPassword } from "../Authentication/Forgot Password/ForgotPassword";
+import { ProtectedRoutes } from "../Protected Routes/ProtectedRoutes";
 
 // USING USE CONTEXT
 export const LinksContext = createContext({});
@@ -31,6 +33,9 @@ export function Links({ decodedObj }) {
 
   // STORING GROUP EXPENSE DETAILS FROM THE DATABASE
   const [grpExpensesFrmDb, setGrpExpensesFrmDb] = useState({});
+
+  // TO KNOW IF THE USER IS LOGGED IN OR NOT (HELPS IN PROTECTING THE ROUTES)
+  const [isLogged, setIsLogged] = useState();
 
   // CREATING OBJECT TO USE IN USECONTEXT
   const obj = {
@@ -52,10 +57,15 @@ export function Links({ decodedObj }) {
       const FriendsList = FriendsListFn(decodedObj);
       FriendsList.then((data) => {
         if (!data.Access) {
-          return;
+          return setIsLogged(false);
         }
+        setTimeout(() => {
+          setIsLogged(true);
+        }, 1000);
         setFrndsLst(data);
       });
+    } else {
+      setIsLogged(false);
     }
   }, [decodedObj]);
 
@@ -65,6 +75,7 @@ export function Links({ decodedObj }) {
       const GroupsList = GroupsListFn(decodedObj);
       GroupsList.then((data) => {
         if (!data.Access) {
+          setIsLogged(false);
           return;
         }
         setGrpsLst(data.groupsDetails);
@@ -82,7 +93,12 @@ export function Links({ decodedObj }) {
 
         {/* LOGIN */}
         <Route exact path="/login">
-          <Login setFrndsLst={setFrndsLst} setGrpsLst={setGrpsLst} />
+          <Login
+            setFrndsLst={setFrndsLst}
+            setGrpsLst={setGrpsLst}
+            isLogged={isLogged}
+            setIsLogged={setIsLogged}
+          />
         </Route>
 
         {/* SIGN UP */}
@@ -90,11 +106,17 @@ export function Links({ decodedObj }) {
           <SignUp />
         </Route>
 
+        {/* FORGOT PASSWORD */}
+        <Route exact path="/forgot-password">
+          <ForgotPassword />
+        </Route>
+
         {/* DASHBOARD */}
-        <Route path="/dashboard">
+
+        <ProtectedRoutes path="/dashboard" isLogged={isLogged}>
           <TopBar />
           <DashboardMainContent />
-        </Route>
+        </ProtectedRoutes>
 
         {/* FRIENDS */}
         <Route path="/friends/:user_id/:friend_id">
@@ -104,9 +126,9 @@ export function Links({ decodedObj }) {
         </Route>
 
         {/* ADD FRIEND */}
-        <Route path="/friend/new">
+        <ProtectedRoutes path="/friend/new" isLogged={isLogged}>
           <NewFriends setFrndsLst={setFrndsLst} />
-        </Route>
+        </ProtectedRoutes>
 
         {/* GROUPS */}
         <Route path="/groups/:id">

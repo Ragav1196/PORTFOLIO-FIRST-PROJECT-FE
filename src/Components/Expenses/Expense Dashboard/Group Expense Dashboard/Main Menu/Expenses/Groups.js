@@ -37,12 +37,12 @@ export function Groups() {
             <h1>{groupDetails.name.toUpperCase()}</h1>
             <div>
               <button
-                className="btnDfltStyle"
+                className="btnDefltStyle"
                 onClick={() => SetShowAddExp(true)}
               >
                 Add Expense
               </button>
-              <button className="btnDfltStyle">Settle Up</button>
+              <button className="btnDefltStyle">Settle Up</button>
             </div>
           </article>
 

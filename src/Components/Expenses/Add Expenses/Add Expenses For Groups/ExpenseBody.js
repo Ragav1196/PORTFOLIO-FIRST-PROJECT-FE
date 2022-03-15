@@ -201,12 +201,12 @@ export function ExpenseBody({
               setMoveCntrs(false);
               SetShowAddExp(false);
             }}
-            className="btnDfltStyle"
+            className="btnDefltStyle"
             type="button"
           >
             Cancel
           </button>
-          <button className="btnDfltStyle" type="submit">
+          <button className="btnDefltStyle" type="submit">
             Save
           </button>
         </article>

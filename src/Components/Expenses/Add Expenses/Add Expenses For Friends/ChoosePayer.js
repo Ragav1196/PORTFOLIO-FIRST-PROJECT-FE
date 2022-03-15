@@ -137,7 +137,7 @@ export function ChoosePayer({
                 />
               </div>
             </div>
-            <button id="btnDfltStyle" type="submit">
+            <button id="btnDefltStyle" type="submit">
               ADD
             </button>
           </form>
