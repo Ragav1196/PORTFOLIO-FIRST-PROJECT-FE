@@ -2,10 +2,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import { API_URL } from "../../Global Constants/GlobalConstants";
-import { useState } from "react";
 import "./ForgotPassword.css";
-import { FriendsListFn, GroupsListFn } from "../../GetDataFrmDatabase";
-import { decodeToken } from "react-jwt";
 
 export function ForgotPassword() {
   const history = useHistory();
@@ -38,7 +35,7 @@ export function ForgotPassword() {
   });
 
   // FORMIK
-  const { handleSubmit, touched, errors, values, handleChange, handleBlur } =
+  const { handleSubmit, values, handleChange, handleBlur } =
     useFormik({
       initialValues: {
         email: "ragavinrap@gmail.com",

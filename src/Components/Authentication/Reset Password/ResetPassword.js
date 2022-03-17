@@ -11,7 +11,7 @@ export function ResetPassword() {
 
   // TO RESET THE PASSWORD
   async function ResetPasswordFn(userInfo) {
-    const response = await fetch(`${API_URL}/reset-password`, {
+    await fetch(`${API_URL}/reset-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,23 +46,22 @@ export function ResetPassword() {
   });
 
   // FORMIK
-  const { handleSubmit, touched, errors, values, handleChange, handleBlur } =
-    useFormik({
-      initialValues: {
-        password: "",
-        confirmPassword: "",
-      },
-      validationSchema: formValidationSchema,
-      onSubmit: async (userInfo) => {
-        try {
-          userInfo.token = token;
-          console.log(userInfo);
-          await ResetPasswordFn(userInfo);
-        } catch (err) {
-          console.log(err);
-        }
-      },
-    });
+  const { handleSubmit, values, handleChange, handleBlur } = useFormik({
+    initialValues: {
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: formValidationSchema,
+    onSubmit: async (userInfo) => {
+      try {
+        userInfo.token = token;
+        console.log(userInfo);
+        await ResetPasswordFn(userInfo);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  });
 
   return (
     <section className="RP_MainCntr">
