@@ -141,6 +141,11 @@ export function Links({ decodedObj }) {
         <Route path="/group/new">
           <NewGroups setGrpsLst={setGrpsLst} />
         </Route>
+
+        {/* FOR UNKNOWN ROUTES */}
+        <Route path="*">
+          <p>RAGAV</p>
+        </Route>
       </Switch>
     </LinksContext.Provider>
   );

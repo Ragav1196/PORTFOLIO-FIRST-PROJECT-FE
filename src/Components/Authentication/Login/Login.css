@@ -106,6 +106,14 @@
   cursor: pointer;
 }
 
+.L_FrgtPwd:hover {
+  color: #008166;
+}
+
+.L_FrgtPwd:active {
+  transform: translateY(5px);
+}
+
 /* LOGIN IN WITH GOOGLE BUTTON */
 .L_LoginDtlCntr > div > button {
   background-color: white;

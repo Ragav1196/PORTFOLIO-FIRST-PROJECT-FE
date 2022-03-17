@@ -8,6 +8,51 @@ import { FriendsListFn, GroupsListFn } from "../../GetDataFrmDatabase";
 import { decodeToken } from "react-jwt";
 
 export function ForgotPassword() {
+  const history = useHistory();
+
+  // TO SEND AN EMAIL FOR PASSWORD RESET
+  async function ForgotPasswordFn(userInfo) {
+    const response = await fetch(`${API_URL}/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
+
+    const dataFrmDb = await response.json();
+    const tokenExpire = dataFrmDb.tokenExpire;
+    localStorage.setItem("Token Expire", tokenExpire);
+    history.push("/login");
+  }
+
+  // FORM VALIDATION
+  const formValidationSchema = yup.object({
+    email: yup
+      .string()
+      .required("Please provide your E-mail")
+      .matches(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Email pattern doesn't match"
+      ),
+  });
+
+  // FORMIK
+  const { handleSubmit, touched, errors, values, handleChange, handleBlur } =
+    useFormik({
+      initialValues: {
+        email: "ragavinrap@gmail.com",
+      },
+      validationSchema: formValidationSchema,
+      onSubmit: async (userInfo) => {
+        try {
+          await ForgotPasswordFn(userInfo);
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    });
+
   return (
     <section className="FP_MainCntr">
       <article className="FP_HeaderCntr">
@@ -43,13 +88,34 @@ export function ForgotPassword() {
 
       <article className="FP_FrgtPwdCntr">
         <div>
-          <img
-            src="https://image.shutterstock.com/z/stock-vector-concept-sign-in-page-on-mobile-screen-desktop-computer-with-login-form-and-sign-in-button-for-web-1145292776.jpg"
-            alt="Forgot Password"
-          />
+          <h1>FORGOT YOUR PASSWORD</h1>
 
           <div>
-            <input type="email" placeholder="Enter Your Email Address" />
+            <img
+              src="https://image.shutterstock.com/z/stock-vector-concept-sign-in-page-on-mobile-screen-desktop-computer-with-login-form-and-sign-in-button-for-web-1145292776.jpg"
+              alt="Forgot Password"
+            />
+
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="email">
+                E-mail Address
+                <input
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="email"
+                  value={values.email}
+                  type="email"
+                  placeholder="Enter Your Email Address"
+                  id="email"
+                />
+              </label>
+
+              <button type="submit" className="btnDefltStyle">
+                Request Reset Link
+              </button>
+
+              <p onClick={() => history.push("/login")}>Back To Login</p>
+            </form>
           </div>
         </div>
       </article>
