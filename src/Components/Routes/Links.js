@@ -14,6 +14,7 @@ import { MainContent as GroupsMainContent } from "../Expenses/Expense Dashboard/
 import { MainPage as GroupsAddExpense } from "../Expenses/Add Expenses/Add Expenses For Groups/MainPage";
 import { ForgotPassword } from "../Authentication/Forgot Password/ForgotPassword";
 import { ProtectedRoutes } from "../Protected Routes/ProtectedRoutes";
+import { ResetPassword } from "../Authentication/Reset Password/ResetPassword";
 
 // USING USE CONTEXT
 export const LinksContext = createContext({});
@@ -92,7 +93,7 @@ export function Links({ decodedObj }) {
         </Route>
 
         {/* LOGIN */}
-        <Route exact path="/login">
+        <Route path="/login">
           <Login
             setFrndsLst={setFrndsLst}
             setGrpsLst={setGrpsLst}
@@ -102,13 +103,18 @@ export function Links({ decodedObj }) {
         </Route>
 
         {/* SIGN UP */}
-        <Route exact path="/sign-up">
+        <Route path="/sign-up">
           <SignUp />
         </Route>
 
         {/* FORGOT PASSWORD */}
-        <Route exact path="/forgot-password">
+        <Route path="/forgot-password">
           <ForgotPassword />
+        </Route>
+
+        {/* RESET PASSWORD */}
+        <Route path="/reset-password/:token">
+          <ResetPassword />
         </Route>
 
         {/* DASHBOARD */}
